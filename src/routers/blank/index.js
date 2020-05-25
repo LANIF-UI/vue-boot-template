@@ -8,6 +8,6 @@ export default {
   path: 'blank', // 路径
   name: 'Blank', // 菜单名
   component: () => import('./components'),
-  meta: { title: 'Blank', icon: 'platform-eleme' },
+  meta: { title: 'Blank' },
   children: []
 }

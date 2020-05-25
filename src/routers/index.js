@@ -48,7 +48,7 @@ export const constantRoutes = [
   {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/example/blank',
     name: 'Example',
     meta: { title: '示例', icon: 'example' },
     children: [
