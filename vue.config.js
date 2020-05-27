@@ -12,8 +12,8 @@ const name = defaultSettings.title || 'Vue Boot Template'
 // use administrator privileges to execute the command line.
 // For example, Mac: sudo npm run
 // You can change the port by the following methods:
-// port = 3000 npm run dev OR npm run dev --port = 3000
-const port = process.env.port || process.env.npm_config_port || 3000 // dev port
+// port = 2233 npm run dev OR npm run dev --port = 2233
+const port = process.env.port || process.env.npm_config_port || 2233 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -55,12 +55,12 @@ module.exports = {
     // set svg-sprite-loader
     config.module
       .rule('svg')
-      .exclude.add(resolve('src/icons'))
+      .exclude.add(resolve('src/assets/images'))
       .end()
     config.module
       .rule('icons')
       .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
+      .include.add(resolve('src/assets/images'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')

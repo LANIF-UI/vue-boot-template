@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from '@/layout/BasicLayout'
 // import BlankLayout from '@/layout/BlankLayout'
 // import InsetLayout from '@/layout/InsetLayout'
 
@@ -14,6 +14,7 @@ import Blank from '@/routers/blank'
 import { NotFount } from '@/routers/pages'
 import Dashboard from '@/routers/dashboard'
 import Nested from '@/routers/nested'
+import Container from '@/routers/ui/container'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  *
@@ -55,7 +56,16 @@ export const constantRoutes = [
       Blank
     ]
   },
-
+  {
+    path: '/ui',
+    component: Layout,
+    redirect: '/ui/container',
+    name: 'UI',
+    meta: { title: 'UI元素', icon: 'table' },
+    children: [
+      Container
+    ]
+  },
   {
     path: '/nested',
     component: Layout,

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import logo from '@/assets/images/logo.png'
+import { logo } from '@/assets/images'
 export default {
   name: 'SidebarLogo',
   props: {
@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/assets/styles/variables.scss';
+
 .sidebarLogoFade-enter-active {
   transition: opacity 1.5s;
 }
@@ -48,8 +50,8 @@ export default {
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: $navbarHeight;
+  line-height: $navbarHeight;
   background: #fff;
   text-align: center;
   overflow: hidden;

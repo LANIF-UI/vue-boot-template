@@ -7,7 +7,7 @@ store.registerModule(model.namespaced, model)
 // route
 export default {
   path: 'dashboard', // 路径
-  name: 'Dashboard', // 菜单名
+  name: 'Dashboard',
   component: () => import('./components'),
-  meta: { title: 'Dashboard', icon: 'dashboard' }
+  meta: { title: '仪表盘', icon: 'dashboard' }
 }

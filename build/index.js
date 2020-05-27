@@ -9,7 +9,7 @@ if (process.env.npm_config_preview || rawArgv.includes('--preview')) {
 
   run(`vue-cli-service build ${args}`)
 
-  const port = 3000
+  const port = 2233
   const publicPath = config.publicPath
 
   var connect = require('connect')

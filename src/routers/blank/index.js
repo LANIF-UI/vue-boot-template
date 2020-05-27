@@ -6,7 +6,7 @@ store.registerModule(mo.namespaced, mo)
 
 export default {
   path: 'blank', // 路径
-  name: 'Blank', // 菜单名
+  name: 'Blank',
   component: () => import('./components'),
   meta: { title: 'Blank' },
   children: []
