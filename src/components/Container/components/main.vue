@@ -24,6 +24,7 @@ export default {
 .le-main {
   padding: 0;
   overflow: hidden;
+  position: relative;
 }
 .le-main__padding {
   padding: $containerMainPadding;
