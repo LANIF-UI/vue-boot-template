@@ -20,19 +20,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~@/assets/styles/variables.scss';
+
 .le-panel {
   border-radius: 4px;
-  border: 1px solid #ebeef5;
+  border: 1px solid $borderColor;
   background-color: #fff;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 .le-panel__header {
-  padding: 18px 20px;
-  border-bottom: 1px solid #ebeef5;
-  background: #fafafa;
-  box-sizing: border-box;
+  padding: $panelHeaderPadding;
+  border-bottom: 1px solid $borderColor;
+  background: $panelHeaderBackgroundColor;
 }
 .le-panel__body {
-  padding: 20px;
+  padding: $panelBodyPadding;
 }
 </style>

@@ -1,6 +1,6 @@
 // 通用
 $fontSizeBase: 14px;
-$borderColor: #dedede;
+$borderColor: #ebeef5;
 
 // 导航高
 $navbarHeight: 50px;
@@ -15,10 +15,19 @@ $subMenuBg: darken($menuBg, 5%);
 $subMenuHover: darken($menuBg, 10%);
 
 // 布局容器
-$appPadding: 10px; // 最外层容器边距
+$basicLayoutPadding: 24px; // 最外层容器边距
+$insetLayoutPadding: 10px; // 最外层容器边距
+
 $containerHeaderBorder: 1px solid $borderColor;
 $containerHeaderPadding: 0 20px;
 $containerMainPadding: 20px;
+
+
+
+// 面板
+$panelHeaderPadding: 12px 10px;
+$panelBodyPadding: 10px;
+$panelHeaderBackgroundColor: #fafafa;
 
 // 共享变量给页面js
 // 例 import { menuText } from '@/assets/styles/variables.scss'

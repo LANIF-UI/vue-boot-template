@@ -1,7 +1,7 @@
 <template>
   <el-main
     class="le-main"
-    :class="{ 'le-main__padding': padding }"
+    :class="{ 'le-main__padding': padding, 'le-main__scroll': scroll }"
     v-bind="$attrs"
   >
     <slot />
@@ -12,7 +12,8 @@
 export default {
   name: 'LeMain',
   props: {
-    padding: Boolean // 是否带内边距
+    padding: Boolean, // 是否带内边距
+    scroll: Boolean // 是否需要带滚动条
   }
 }
 </script>
@@ -22,8 +23,12 @@ export default {
 
 .le-main {
   padding: 0;
+  overflow: hidden;
 }
 .le-main__padding {
   padding: $containerMainPadding;
+}
+.le-main__scroll {
+  overflow: auto;
 }
 </style>

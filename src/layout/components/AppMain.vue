@@ -31,11 +31,11 @@ export default {
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  padding: $appPadding;
+  padding: $basicLayoutPadding;
 }
 .fixed-header + .app-main {
   min-height: 100vh;
-  padding-top: $navbarHeight + $appPadding;
+  padding-top: $navbarHeight + $basicLayoutPadding;
 }
 </style>
 

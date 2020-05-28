@@ -6,7 +6,7 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout/BasicLayout'
 // import BlankLayout from '@/layout/BlankLayout'
-// import InsetLayout from '@/layout/InsetLayout'
+import InsetLayout from '@/layout/InsetLayout'
 
 /* Router */
 import Login from '@/routers/login'

@@ -1,7 +1,11 @@
 <template>
-  <div class="app-wrapper">
-    <router-view />
-  </div>
+  <le-container class="app-wrapper">
+    <le-main>
+      <transition name="fade-transform" mode="out-in">
+        <router-view :key="key" />
+      </transition>
+    </le-main>
+  </le-container>
 </template>
 
 <style lang="scss" scoped>
@@ -11,8 +15,13 @@
 .app-wrapper {
   @include clearfix;
   position: relative;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: $insetLayoutPadding;
+
   &.mobile.openSidebar {
     position: fixed;
     top: 0;
