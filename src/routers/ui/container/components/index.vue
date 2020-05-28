@@ -1,19 +1,18 @@
 <template>
   <le-container full border>
-    <el-header>
+    <le-header>
       header
-    </el-header>
-    <el-main>
-      content
+    </le-header>
+    <le-main>
       <le-container style="background: green">
-        <el-header>
+        <le-header>
           header
-        </el-header>
-        <el-main>
-          content
-        </el-main>
+        </le-header>
+        <le-main>
+          content1
+        </le-main>
       </le-container>
-    </el-main>
+    </le-main>
   </le-container>
 </template>
 

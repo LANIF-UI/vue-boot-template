@@ -1,7 +1,13 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
-    <el-button @click="setName({ name: 'sususu' })">Button</el-button>
+    <el-button
+      type="primary"
+      icon="el-icon-search"
+      @click="setName({ name: 'sususu' })"
+    >
+      Button
+    </el-button>
   </div>
 </template>
 

@@ -3,6 +3,7 @@
     v-bind="$attrs"
     class="le-container"
     :class="{ 'container--full': full, 'container--border': border }"
+    :direction="isVertical"
   >
     <slot />
   </el-container>
@@ -16,7 +17,28 @@ export default {
       type: Boolean,
       default: false
     },
-    border: Boolean
+    border: Boolean,
+    direction: String
+  },
+  computed: {
+    isVertical() {
+      if (this.direction === 'vertical') {
+        return 'vertical'
+      } else if (this.direction === 'horizontal') {
+        return 'horizontal'
+      } else if (
+        this.$slots &&
+        this.$slots.default &&
+        this.$slots.default.some(vnode => {
+          const tag = vnode.componentOptions && vnode.componentOptions.tag
+          return tag === 'le-header' || tag === 'le-footer'
+        })
+      ) {
+        return 'vertical'
+      } else {
+        return 'horizontal'
+      }
+    }
   }
 }
 </script>

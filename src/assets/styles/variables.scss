@@ -1,26 +1,29 @@
-// navbar
+// 通用
+$fontSizeBase: 14px;
+$borderColor: #dedede;
+
+// 导航高
 $navbarHeight: 50px;
-// sidebar
+// 侧边框&菜单
+$sideBarWidth: 230px;
 $menuText: #bfcbd9;
 $menuActiveText: #fff;
 $subMenuActiveText: #fff; //https://github.com/ElemeFE/element/issues/12951
-
 $menuBg: #30363e;
 $menuHover: lighten($menuBg, 5%);
-
 $subMenuBg: darken($menuBg, 5%);
 $subMenuHover: darken($menuBg, 10%);
 
-$sideBarWidth: 230px;
-
-// container
-$appPadding: 10px;
-$borderColor: #dedede;
+// 布局容器
+$appPadding: 10px; // 最外层容器边距
 $containerHeaderBorder: 1px solid $borderColor;
+$containerHeaderPadding: 0 20px;
+$containerMainPadding: 20px;
 
-// the :export directive is the magic sauce for webpack
-// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+// 共享变量给页面js
+// 例 import { menuText } from '@/assets/styles/variables.scss'
 :export {
+  fontSizeBase: $fontSizeBase;
   menuText: $menuText;
   menuActiveText: $menuActiveText;
   subMenuActiveText: $subMenuActiveText;
@@ -30,3 +33,11 @@ $containerHeaderBorder: 1px solid $borderColor;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
 }
+
+/* element-ui 样式修改 */
+// https://github.com/ElemeFE/element/blob/dev/packages/theme-chalk/src/common/var.scss
+/* 改变字体大小 */
+$--color-primary: #409EFF !default;
+$--font-size-base: $fontSizeBase !default;
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';

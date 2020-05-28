@@ -6,8 +6,7 @@
 
 <script>
 export default {
-  name: 'LeFooter',
-  componentName: 'ElFooter'
+  name: 'LeFooter'
 }
 </script>
 

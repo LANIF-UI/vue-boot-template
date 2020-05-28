@@ -3,22 +3,26 @@
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
+@import "~element-ui/packages/theme-chalk/src/index";
 
-body {
-  height: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-}
-
-label {
-  font-weight: 700;
-}
 
 html {
   height: 100%;
   box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  line-height: 1.5;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-size: $fontSizeBase;
+}
+
+label {
+  font-weight: 700;
 }
 
 #app {
