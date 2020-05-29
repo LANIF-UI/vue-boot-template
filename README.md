@@ -1,4 +1,4 @@
-## Build Setup
+## 启动
 
 ```bash
 
@@ -37,3 +37,5 @@ npm run lint
 # 代码格式检查并自动修复
 npm run lint -- --fix
 ```
+
+fork自 https://github.com/PanJiaChen/vue-admin-template
