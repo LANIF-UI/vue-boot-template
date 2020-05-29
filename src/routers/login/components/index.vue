@@ -1,9 +1,19 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
+    >
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">
+          <img :src="logo1" />
+          <b class="sidebar-title">EBoot</b>
+          <span>Template</span>
+        </h3>
       </div>
 
       <el-form-item prop="username">
@@ -41,18 +51,20 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
-      </div>
-
+      <el-button
+        :loading="loading"
+        type="primary"
+        class="login-btn"
+        @click.native.prevent="handleLogin"
+      >
+        登录
+      </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
+import { logo1 } from '@/assets/images'
 import { validUsername } from '@/utils/validate'
 
 export default {
@@ -73,6 +85,7 @@ export default {
       }
     }
     return {
+      logo1,
       loginForm: {
         username: 'admin',
         password: '111111'
@@ -109,12 +122,15 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch(() => {
-            this.loading = false
-          })
+          this.$store
+            .dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/' })
+              this.loading = false
+            })
+            .catch(() => {
+              this.loading = false
+            })
         } else {
           console.log('error submit!!')
           return false
@@ -128,8 +144,8 @@ export default {
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
 
-$bg:#283443;
-$light_gray:#fff;
+$bg: #283443;
+$font-color: #fff;
 $cursor: #fff;
 
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
@@ -142,7 +158,6 @@ $cursor: #fff;
 .login-container {
   .el-input {
     display: inline-block;
-    height: 47px;
     width: 85%;
 
     input {
@@ -151,8 +166,7 @@ $cursor: #fff;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
-      height: 47px;
+      color: $font-color;
       caret-color: $cursor;
 
       &:-webkit-autofill {
@@ -163,8 +177,8 @@ $cursor: #fff;
   }
 
   .el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     color: #454545;
   }
@@ -172,14 +186,14 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$font-color: #333;
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+  background: url('~@/assets/images/bg.jpg');
   overflow: hidden;
 
   .login-form {
@@ -191,20 +205,8 @@ $light_gray:#eee;
     overflow: hidden;
   }
 
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-
-    span {
-      &:first-of-type {
-        margin-right: 16px;
-      }
-    }
-  }
-
   .svg-container {
-    padding: 6px 5px 6px 15px;
+    padding: 0px 5px 0px 15px;
     color: $dark_gray;
     vertical-align: middle;
     width: 30px;
@@ -215,22 +217,40 @@ $light_gray:#eee;
     position: relative;
 
     .title {
-      font-size: 26px;
-      color: $light_gray;
+      font-size: 28px;
+      color: $font-color;
       margin: 0px auto 40px auto;
       text-align: center;
-      font-weight: bold;
+      font-weight: normal;
+      > img {
+        width: 50px;
+        margin-right: 18px;
+      }
+      > * {
+        vertical-align: middle;
+      }
     }
   }
 
   .show-pwd {
     position: absolute;
     right: 10px;
-    top: 7px;
+    top: 0px;
     font-size: 16px;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+}
+.login-btn {
+  width: 100%;
+  margin-bottom: 30px;
+  font-size: 15px;
+  letter-spacing: 3px;
+  background: rgba(#66b1ff, 0.2);
+  color: #409eff;
+  &:hover {
+    background: rgba(#66b1ff, 0.3);
   }
 }
 </style>

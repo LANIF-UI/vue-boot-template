@@ -1,6 +1,18 @@
 // 通用
 $fontSizeBase: 14px;
+$fontSizeMedium: 16px;
+$fontSizeLarge: 18px;
 $borderColor: #ebeef5;
+$colorPrimary: #409eff;
+$colorSuccess: #67c23a;
+$colorWarning: #e6a23c;
+$colorDanger: #f56c6c;
+$colorInfo: #909399;
+$colorWhite: #ffffff;
+$colorBlack: #000000;
+$colorTextPrimary: #303133;
+$colorTextSecondary: #909399;
+$colorTextBase: #666;
 
 // 导航高
 $navbarHeight: 50px;
@@ -22,12 +34,46 @@ $containerHeaderBorder: 1px solid $borderColor;
 $containerHeaderPadding: 0 20px;
 $containerMainPadding: 20px;
 
-
-
-// 面板
-$panelHeaderPadding: 12px 10px;
+// 面板容器
+$panelHeaderPadding: 0px 10px;
+$panelHeaderHeight: 46px;
 $panelBodyPadding: 10px;
 $panelHeaderBackgroundColor: #fafafa;
+
+// 卡片
+$cardHeaderPadding: 0px 10px;
+$cardHeaderHeight: 40px;
+$cardBodyPadding: 5px 10px;
+
+/* element-ui 样式修改 */
+// https://github.com/ElemeFE/element/blob/dev/packages/theme-chalk/src/common/var.scss
+
+$--color-primary: $colorPrimary !default;
+$--color-success: $colorSuccess !default;
+$--color-warning: $colorWarning !default;
+$--color-danger: $colorDanger !default;
+$--color-info: $colorInfo !default;
+$--color-white: $colorWhite !default;
+$--color-black: $colorBlack !default;
+$--color-text-primary: $colorTextPrimary !default;
+
+$--font-size-base: $fontSizeBase !default;
+$--color-text-secondary: $colorTextSecondary !default;
+$--font-size-extra-large: 20px !default;
+$--font-size-large: $fontSizeLarge !default;
+$--font-size-medium: $fontSizeMedium !default;
+$--font-size-small: 13px !default;
+$--font-size-extra-small: 12px !default;
+
+$--input-medium-font-size: 14px !default;
+$--input-medium-height: 36px !default;
+$--input-small-font-size: 13px !default;
+$--input-small-height: 32px !default;
+$--input-mini-font-size: 12px !default;
+$--input-mini-height: 28px !default;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 // 共享变量给页面js
 // 例 import { menuText } from '@/assets/styles/variables.scss'
@@ -42,11 +88,3 @@ $panelHeaderBackgroundColor: #fafafa;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
 }
-
-/* element-ui 样式修改 */
-// https://github.com/ElemeFE/element/blob/dev/packages/theme-chalk/src/common/var.scss
-/* 改变字体大小 */
-$--color-primary: #409EFF !default;
-$--font-size-base: $fontSizeBase !default;
-/* 改变 icon 字体路径变量，必需 */
-$--font-path: '~element-ui/lib/theme-chalk/fonts';

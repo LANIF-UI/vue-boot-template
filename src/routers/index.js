@@ -15,7 +15,8 @@ import { NotFount } from '@/routers/pages'
 import Dashboard from '@/routers/dashboard'
 import Nested from '@/routers/nested'
 import Container from '@/routers/ui/container'
-import Panel from '@/routers/ui/Panel'
+import Panel from '@/routers/ui/panel'
+import Card from '@/routers/ui/card'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  *
@@ -65,7 +66,8 @@ export const constantRoutes = [
     meta: { title: 'UI元素', icon: 'table' },
     children: [
       Container,
-      Panel
+      Panel,
+      Card
     ]
   },
   {
