@@ -6,6 +6,7 @@ import Footer from './Container/components/footer'
 import SvgIcon from './SvgIcon'
 import Panel from './Panel'
 import Card from './Card'
+import Form from './Form'
 
 const components = [
   Container,
@@ -15,7 +16,8 @@ const components = [
   Footer,
   SvgIcon,
   Panel,
-  Card
+  Card,
+  Form
 ]
 
 const install = function(Vue, opts = {}) {

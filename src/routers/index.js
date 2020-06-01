@@ -17,6 +17,7 @@ import Nested from '@/routers/nested'
 import Container from '@/routers/ui/container'
 import Panel from '@/routers/ui/panel'
 import Card from '@/routers/ui/card'
+import Form from '@/routers/widget/form'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  *
@@ -68,6 +69,16 @@ export const constantRoutes = [
       Container,
       Panel,
       Card
+    ]
+  },
+  {
+    path: '/widget',
+    component: Layout,
+    redirect: '/widget/form',
+    name: 'Widget',
+    meta: { title: '组件', icon: 'table' },
+    children: [
+      Form
     ]
   },
   {
