@@ -9,9 +9,9 @@ export const columns1 = [
     title: '角色类型',
     name: 'roleType',
     dict: [
-      { code: '1', codeName: '111' },
-      { code: '2', codeName: '222' },
-      { code: '3', codeName: '333' }
+      { code: '1', codeName: '类型一' },
+      { code: '2', codeName: '类型二' },
+      { code: '3', codeName: '类型三' }
     ],
     formItem: {
       type: 'select'
@@ -24,7 +24,7 @@ export const columns1 = [
   },
   {
     title: '排序',
-    name: 'ordder',
+    name: 'order',
     formItem: {
       type: 'number'
     }
@@ -33,21 +33,16 @@ export const columns1 = [
 
 export const columns2 = [
   {
-    name: 'id',
-    formItem: {
-      type: 'hidden'
-    }
-  },
-  {
     title: '角色类型',
     name: 'roleType',
     dict: [
-      { code: '1', codeName: '111' },
-      { code: '2', codeName: '222' },
-      { code: '3', codeName: '333' }
+      { code: '1', codeName: '类型一' },
+      { code: '2', codeName: '类型二' },
+      { code: '3', codeName: '类型三' }
     ],
     formItem: {
-      type: 'select'
+      type: 'select',
+      initialValue: '2'
     }
   },
   {
@@ -89,8 +84,8 @@ export const columns3 = [
           message: '请输入角色名'
         },
         {
-          pattern: /^[\w\u4E00-\u9FA5()]{1,20}$/,
-          message: '角色名只能输入1-20个汉字、英文、数字、括号'
+          pattern: /^[\w\u4E00-\u9FA5()]{1,3}$/,
+          message: '角色名只能输入1-3个汉字、英文、数字、括号'
         }
       ]
     }
@@ -158,23 +153,38 @@ export const columns3 = [
 
 export const columns4 = [
   {
-    title: '用户名',
-    name: 'user_name',
-    formItem: {
-      rules: [
-        {
-          required: true,
-          message: '请输入用户名'
-        }
-      ]
-    }
+    title: '活动名称',
+    name: 'name',
+    formItem: {}
   },
   {
-    title: '密码',
-    name: 'user_password',
-    formItem: {
-      type: 'password'
-    }
+    title: '活动时间',
+    name: 'date',
+    formItem: [
+      {
+        name: 'startDate',
+        formItem: {
+          col: 11,
+        }
+      },
+      {
+        formItem: {
+          type: 'divider',
+          col: 2
+        }
+      },
+      {
+        name: 'endDate',
+        formItem: {
+          col: 11,
+        }
+      }
+    ]
+  },
+  {
+    title: '活动性质',
+    name: 'type',
+    formItem: {}
   }
 ];
 

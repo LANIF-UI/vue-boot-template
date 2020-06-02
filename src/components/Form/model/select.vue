@@ -1,6 +1,13 @@
 <template>
   <el-form-item :label="title" :prop="name" :rules="$attrs.rules">
-    <el-input v-bind="$attrs" v-model="record[name]" :type="type"></el-input>
+    <el-select v-bind="$attrs" v-model="record[name]" :placeholder="_placeholder">
+      <el-option
+        v-for="option in dict"
+        :key="option.code"
+        :value="option.code"
+        :label="option.codeName"
+      ></el-option>
+    </el-select>
   </el-form-item>
 </template>
 
@@ -12,11 +19,15 @@ export default {
     name: String,
     preview: Boolean,
     type: String,
-    record: Object
+    record: Object,
+    dict: Array
   },
-  created() {
-    console.log(this.$props)
-  }
+  computed: {
+    _placeholder() {
+      return this.placeholder || `请选择${this.title}`
+    }
+  },
+  created() {}
 }
 </script>
 

@@ -6,7 +6,7 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout/BasicLayout'
 // import BlankLayout from '@/layout/BlankLayout'
-import InsetLayout from '@/layout/InsetLayout'
+// import InsetLayout from '@/layout/InsetLayout'
 
 /* Router */
 import Login from '@/routers/login'
@@ -47,13 +47,14 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [Dashboard]
+    children: [
+      Dashboard
+    ]
   },
   {
     path: '/example',
     component: Layout,
     redirect: '/example/blank',
-    name: 'Example',
     meta: { title: '示例', icon: 'example' },
     children: [
       Blank
@@ -63,7 +64,6 @@ export const constantRoutes = [
     path: '/ui',
     component: Layout,
     redirect: '/ui/container',
-    name: 'UI',
     meta: { title: 'UI元素', icon: 'table' },
     children: [
       Container,
@@ -75,7 +75,6 @@ export const constantRoutes = [
     path: '/widget',
     component: Layout,
     redirect: '/widget/form',
-    name: 'Widget',
     meta: { title: '组件', icon: 'table' },
     children: [
       Form
@@ -85,9 +84,8 @@ export const constantRoutes = [
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',
-    name: 'Nested',
     meta: {
-      title: '多级菜单',
+      title: '页面',
       icon: 'nested'
     },
     children: [
