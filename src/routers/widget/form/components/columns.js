@@ -54,6 +54,7 @@ export const columns2 = [
   }
 ];
 
+// 表单验证
 export const columns3 = [
   {
     name: 'id',
@@ -96,6 +97,7 @@ export const columns3 = [
     formItem: {
       type: 'upload',
       listType: 'picture',
+      tip: '只能上传jpg/png文件，且不超过500kb',
       initialValue: [{
         uid: 1,
         thumbUrl: 'https://avatars1.githubusercontent.com/u/34116960'
@@ -151,6 +153,7 @@ export const columns3 = [
   }
 ];
 
+// 多列布局
 export const columns4 = [
   {
     title: '活动名称',
@@ -159,24 +162,26 @@ export const columns4 = [
   },
   {
     title: '活动时间',
-    name: 'date',
     formItem: [
       {
         name: 'startDate',
         formItem: {
-          col: 11,
+          placeholder: '开始时间',
+          col: { span: 11 },
         }
       },
       {
         formItem: {
           type: 'divider',
-          col: 2
+          direction: 'vertical',
+          col: { span: 2 },
         }
       },
       {
         name: 'endDate',
         formItem: {
-          col: 11,
+          placeholder: '结束时间',
+          col: { span: 11 },
         }
       }
     ]
@@ -184,11 +189,26 @@ export const columns4 = [
   {
     title: '活动性质',
     name: 'type',
-    formItem: {}
+    formItem: [
+      { name: 'c1', formItem: { placeholder: '列1', col: { span: 4 }}},
+      { title: h => <i class='el-icon-mobile-phone'></i>, formItem: { type: 'divider', col: { span: 2 }}},
+      { name: 'c2', formItem: { placeholder: '列2', col: { span: 4 }}},
+      { formItem: { type: 'divider', col: { span: 2 }}},
+      { name: 'c3', formItem: { placeholder: '列3', col: { span: 5 }}},
+      { formItem: { type: 'divider', col: { span: 2 }}},
+      { name: 'c4', formItem: { placeholder: '列4', col: { span: 5 }}},
+    ]
   }
 ];
 
-export const columns5 = [
+// 分隔线示例
+export const columns5 = self => [
+  {
+    title: '分隔线',
+    formItem: {
+      type: 'divider'
+    }
+  },
   {
     title: '用户名',
     name: 'user_name',
@@ -199,6 +219,12 @@ export const columns5 = [
           message: '请输入用户名'
         }
       ]
+    }
+  },
+  {
+    title: h => <i class='el-icon-mobile-phone' onClick={self.say}>点我</i>,
+    formItem: {
+      type: 'divider'
     }
   },
   {

@@ -49,7 +49,14 @@
       </le-panel>
     </el-col>
     <el-col :span="12">
-      <le-panel header="多列布局">
+      <le-panel header="分隔线">
+        <!-- 示例 -->
+        <le-form :columns="columns5" @submit="onSubmit"></le-form>
+        <!-- /示例 -->
+      </le-panel>
+    </el-col>
+    <el-col :span="12">
+      <le-panel header="多列布局&分隔线">
         <!-- 示例 -->
         <le-form :columns="columns4" @submit="onSubmit"></le-form>
         <!-- /示例 -->
@@ -59,7 +66,7 @@
 </template>
 
 <script>
-import { columns1, columns2, columns3, columns4 } from './columns'
+import { columns1, columns2, columns3, columns4, columns5 } from './columns'
 export default {
   data() {
     return {
@@ -67,6 +74,7 @@ export default {
       columns2,
       columns3,
       columns4,
+      columns5: columns5(this),
       record1: {
         id: 123,
         roleType: '2', // 类型不能错，不能是数字的2
@@ -81,6 +89,9 @@ export default {
     },
     onReset() {
       alert('reset')
+    },
+    say() {
+      alert('hi~')
     }
   }
 }

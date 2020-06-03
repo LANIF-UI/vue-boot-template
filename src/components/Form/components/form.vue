@@ -1,6 +1,7 @@
 <template>
   <el-form
     ref="form"
+    class="le-form"
     :model="formData"
     :label-width="labelWidth"
     :label-suffix="labelSuffix"
@@ -8,15 +9,41 @@
     @submit.native.prevent
   >
     <component
-      v-for="field in formFields"
+      v-for="(field, i) in formFields"
       v-bind="field.formItem"
+      :key="field.name || i"
       :record="formData"
-      :key="field.name"
       :title="field.title"
       :name="field.name"
       :dict="field.dict"
-      :is="field.formItem.type ? `le-${field.formItem.type}` : 'le-input'"
-    ></component>
+      :label="field.title"
+      :is="getType(field.formItem)"
+    >
+      <component
+        v-for="(subField, j) in Array.isArray(field.formItem) && field.formItem"
+        v-bind="{
+          ...subField.formItem,
+          ...(subField.formItem.col || {
+            record: formData,
+            title: subField.title,
+            name: subField.name,
+            dict: subField.dict
+          })
+        }"
+        :class="'le-form__' + (subField.formItem.type || 'input')"
+        :key="subField.name || j"
+        :is="getType(subField.formItem)"
+      >
+        <component
+          v-bind="subField.formItem"
+          :record="formData"
+          :title="subField.title"
+          :name="subField.name"
+          :dict="subField.dict"
+          :is="getType(subField.formItem, true)"
+        ></component>
+      </component>
+    </component>
     <el-form-item>
       <slot name="submitBtn">
         <el-button type="primary" icon="el-icon-check" @click="submitForm" native-type="submit">
@@ -35,7 +62,7 @@
 
 <script>
 import model from '../model'
-import { isFunction } from '@/utils'
+import { isFunction, isArray } from '@/utils'
 export default {
   name: 'LeForm',
   components: model,
@@ -104,6 +131,18 @@ export default {
           return formItem.initialValue
         }
       }
+    },
+    getType(formItem, isFinal) {
+      if (isArray(formItem)) {
+        return 'el-form-item'
+      }
+      if (formItem.col && !isFinal) {
+        return 'el-col'
+      }
+      if (!formItem.type) {
+        return 'le-input'
+      }
+      return 'le-' + formItem.type
     }
   }
 }
@@ -112,5 +151,21 @@ export default {
 <style lang="scss">
 .el-form-item__content .el-select {
   width: 100%;
+}
+.le-form__divider {
+  text-align: center;
+  .el-divider {
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+  }
+  .el-divider--horizontal {
+    width: 60%;
+  }
+}
+// 表格布局col会继承父级el-row的gutter，会出现错位
+.le-form [class*='el-col-'] {
+  padding: 0 !important;
 }
 </style>
