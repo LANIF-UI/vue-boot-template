@@ -108,7 +108,7 @@ export const columns3 = [
           message: '请选择用户头像'
         }
       ],
-      maxFileSize: 1000, // 最大限制 kb
+      maxFileSize: 10, // 最大限制 kb
       fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
       max: 2
     }
