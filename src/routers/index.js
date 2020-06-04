@@ -11,7 +11,8 @@ import Layout from '@/layout/BasicLayout'
 /* Router */
 import Login from '@/routers/login'
 import Blank from '@/routers/blank'
-import { NotFount } from '@/routers/pages'
+import NotFount from '@/routers/pages/notfound'
+import Background from '@/routers/pages/background'
 import Dashboard from '@/routers/dashboard'
 import Nested from '@/routers/nested'
 import Container from '@/routers/ui/container'
@@ -89,7 +90,8 @@ export const constantRoutes = [
       icon: 'nested'
     },
     children: [
-      Nested
+      Nested,
+      Background
     ]
   },
   {

@@ -2,7 +2,7 @@
   <el-container
     v-bind="$attrs"
     class="le-container"
-    :class="{ 'container--full': full, 'container--border': border }"
+    :class="{ 'container--full': full, 'container--border': border, 'container--padding': padding }"
     :direction="isVertical"
   >
     <slot />
@@ -18,6 +18,7 @@ export default {
       default: false
     },
     border: Boolean,
+    padding: [Boolean, Number],
     direction: String
   },
   computed: {
@@ -47,6 +48,9 @@ export default {
 @import '~@/assets/styles/variables.scss';
 .le-container {
   position: relative;
+}
+.container--padding {
+  padding: $basicLayoutPadding;
 }
 .container--border {
   border: $containerHeaderBorder;
