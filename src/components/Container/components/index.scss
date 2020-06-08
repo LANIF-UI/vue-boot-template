@@ -1,0 +1,25 @@
+@import '~@/assets/styles/variables.scss';
+
+.le-container {
+  position: relative;
+  &.container--padding {
+    padding: $basicLayoutPadding;
+  }
+  &.container--border {
+    border: $containerHeaderBorder;
+  }
+  &.container--full,
+  &.container--frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  &.container--frame > .le-header,
+  &.container--frame > .le-footer {
+    padding: $containerHeaderPadding;
+    position: relative;
+    overflow: hidden;
+  }
+}

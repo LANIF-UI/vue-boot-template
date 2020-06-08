@@ -18,6 +18,7 @@ import Nested from '@/routers/nested'
 import Container from '@/routers/ui/container'
 import Panel from '@/routers/ui/panel'
 import Card from '@/routers/ui/card'
+import Dialog from '@/routers/ui/dialog'
 import Form from '@/routers/widget/form'
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -69,7 +70,8 @@ export const constantRoutes = [
     children: [
       Container,
       Panel,
-      Card
+      Card,
+      Dialog
     ]
   },
   {

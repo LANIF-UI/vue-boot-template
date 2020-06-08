@@ -3,11 +3,9 @@
     <el-upload
       v-bind="$attrs"
       class="le-upload"
-      action="https://jsonplaceholder.typicode.com/posts/"
       :file-list="fileList"
       :on-change="handleChange"
       :on-remove="handleRemove"
-      multiple
     >
       <render :render="uploadButton"></render>
       <div v-if="tip" slot="tip" class="el-upload__tip">
@@ -19,7 +17,7 @@
 
 <script>
 import render from './render'
-import { isArray } from '@/utils'
+import { isArray, isFunction } from '@/utils'
 
 export default {
   name: 'LeUpload',
@@ -35,11 +33,16 @@ export default {
     render: Function,
     tip: [String, Function],
     maxFileSize: Number, // 最大文件大小
-    fileTypes: Array // 允许文件类型
+    fileTypes: Array, // 允许文件类型
+    normalize: Function
   },
   data() {
+    let _fileList = []
+    if (isFunction(this.normalize) && this.record[this.name]) {
+      _fileList = this.normalize(this.record[this.name])
+    }
     return {
-      fileList: []
+      fileList: _fileList
     }
   },
   computed: {
@@ -60,10 +63,10 @@ export default {
   },
   watch: {
     fileList(newValue, oldValue) {
-      const parent = this.$parent || this.$root;
-      this.record[this.name] = newValue;
+      const parent = this.$parent || this.$root
+      this.record[this.name] = newValue
       // this.$emit('el.form.change', newValue);
-      parent.validateField(this.name);
+      parent.validateField(this.name)
     }
   },
   methods: {
@@ -79,7 +82,7 @@ export default {
       callback()
     },
     validatorFileSize(maxFileSize, value, callback) {
-      if (value && value.some(item => item.size > maxFileSize * 1024)) {
+      if (value && value.some && value.some(item => item.size > maxFileSize * 1024)) {
         callback(new Error(`请上传文件大小在${maxFileSize}K以内的文件`))
         return
       }
@@ -87,6 +90,7 @@ export default {
     validatorFileTypes(fileTypes, value, callback) {
       if (value && isArray(fileTypes) && fileTypes.length > 0) {
         if (
+          value.some &&
           value.some(
             item =>
               item.name &&

@@ -10,7 +10,7 @@
             <code v-text="'<le-aside></le-aside>'"></code>
           </le-panel>
         </el-col>
-        <el-col :span="12" style="height: 300px;">
+        <el-col :span="12" style="height: 100px;">
           <!-- 示例 -->
           <le-container>
             <le-header>Header</le-header>
@@ -19,7 +19,7 @@
           </le-container>
           <!-- /示例 -->
         </el-col>
-        <el-col :span="12" style="height: 300px;">
+        <el-col :span="12" style="height: 100px;">
           <div style="height: 300px; position: relative;">
             <!-- 示例 -->
             <le-container>
@@ -55,6 +55,17 @@
                   <le-footer>Footer</le-footer>
                 </le-container>
               </le-main>
+            </le-container>
+            <!-- /示例 -->
+          </div>
+        </el-col>
+        <el-col :span="12" style="height: 300px;">
+          <div style="height: 300px; position: relative;">
+            <!-- 示例 -->
+            <le-container frame>
+              <le-header>Header</le-header>
+              <le-main>头尾带边框和内边距</le-main>
+              <le-footer>Footer</le-footer>
             </le-container>
             <!-- /示例 -->
           </div>

@@ -6,7 +6,7 @@
 }
 
 .el-upload {
-  input[type="file"] {
+  input[type='file'] {
     display: none !important;
   }
 }
@@ -15,13 +15,22 @@
   display: none;
 }
 
-
 // to fixed https://github.com/ElemeFE/element/issues/2461
 .el-dialog {
   transform: none;
   left: 0;
   position: relative;
   margin: 0 auto;
+  .el-dialog__header {
+    padding: 16px 24px;
+    color: rgba(0, 0, 0, 0.65);
+    background: #fff;
+    border-bottom: 1px solid $borderColor;;
+  }
+  .el-dialog__footer {
+    padding: 10px 16px;
+    border-top: 1px solid $borderColor;;
+  }
 }
 
 // refine element ui upload
@@ -39,7 +48,7 @@
 // dropdown
 .el-dropdown-menu {
   a {
-    display: block
+    display: block;
   }
 }
 

@@ -3,7 +3,11 @@
     v-bind="$attrs"
     class="le-header"
     :height="height"
-    :class="{ 'le-header__height': height, 'le-header__padding': padding }"
+    :class="{
+      'le-header__height': height,
+      'le-header__padding': padding,
+      'le-header--border': border
+    }"
   >
     <slot />
   </el-header>
@@ -17,8 +21,9 @@ export default {
       type: String,
       default: 'auto'
     },
+    border: Boolean,
     padding: Boolean
-  }
+  },
 }
 </script>
 
@@ -30,5 +35,8 @@ export default {
 }
 .le-header__padding {
   padding: $containerHeaderPadding;
+}
+.le-header--border {
+  border-bottom: 1px solid #e8e8e8;
 }
 </style>

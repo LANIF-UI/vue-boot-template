@@ -1,6 +1,11 @@
 <template>
   <el-form-item :label="title" :prop="name" :rules="$attrs.rules">
-    <el-select v-bind="$attrs" v-model="record[name]" :placeholder="_placeholder">
+    <el-select
+      v-bind="$attrs"
+      v-model="record[name]"
+      :placeholder="_placeholder"
+      @change="onChange"
+    >
       <el-option
         v-for="option in dict"
         :key="option.code"
@@ -20,14 +25,20 @@ export default {
     preview: Boolean,
     type: String,
     record: Object,
-    dict: Array
+    dict: Array,
+    change: Function
   },
   computed: {
     _placeholder() {
       return this.placeholder || `请选择${this.title}`
     }
   },
-  created() {}
+  created() {},
+  methods: {
+    onChange(v) {
+      this.change && this.change(v)
+    }
+  }
 }
 </script>
 
