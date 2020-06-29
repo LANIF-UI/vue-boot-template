@@ -193,7 +193,7 @@ $font-color: #333;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background: url('~@/assets/images/bg.jpg');
+  background: url('~@/assets/images/bg-world.png') no-repeat center;
   overflow: hidden;
 
   .login-form {
