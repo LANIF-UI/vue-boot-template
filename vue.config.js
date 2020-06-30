@@ -36,6 +36,13 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    proxy: {
+      '/plugin-suspension': {
+        target: 'http://172.17.186.113:18080',
+        pathRewrite: { '^/api': '' },
+        changeOrigin: true
+      }
+    },
     before: require('./mock/mock-server.js')
   },
   configureWebpack: {

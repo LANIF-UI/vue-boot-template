@@ -2,14 +2,31 @@ const chokidar = require('chokidar')
 const bodyParser = require('body-parser')
 const chalk = require('chalk')
 const path = require('path')
+const Mock = require('mockjs')
 
 const mockDir = path.join(process.cwd(), 'mock')
 
+function responseFake(url, type, respond) {
+  return {
+    url: new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
+    type: type || 'get',
+    response(req, res) {
+      console.log('request invoke:' + req.path)
+      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+    }
+  }
+}
+
 function registerRoutes(app) {
   let mockLastIndex
-  const { default: mocks } = require('./index.js')
+
+  const mocks = require('./index').default.map(route => {
+    return responseFake(route.url, route.type, route.response)
+  })
   for (const mock of mocks) {
-    app[mock.type](mock.url, mock.response)
+    app[mock.type](mock.url, bodyParser.json(), bodyParser.urlencoded({
+      extended: true
+    }), mock.response)
     mockLastIndex = app._router.stack.length
   }
   const mockRoutesLength = Object.keys(mocks).length
@@ -33,10 +50,10 @@ module.exports = app => {
 
   // parse app.body
   // https://expressjs.com/en/4x/api.html#req.body
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }))
+  // app.use(bodyParser.json())
+  // app.use(bodyParser.urlencoded({
+  //   extended: true
+  // }))
 
   const mockRoutes = registerRoutes(app)
   var mockRoutesLength = mockRoutes.mockRoutesLength

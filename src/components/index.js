@@ -7,6 +7,7 @@ import SvgIcon from './SvgIcon'
 import Panel from './Panel'
 import Card from './Card'
 import Form from './Form'
+import Table from './Table'
 
 const components = [
   Container,
@@ -17,7 +18,8 @@ const components = [
   SvgIcon,
   Panel,
   Card,
-  Form
+  Form,
+  Table
 ]
 
 const install = function(Vue, opts = {}) {

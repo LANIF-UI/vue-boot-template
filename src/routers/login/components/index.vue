@@ -55,9 +55,10 @@
         :loading="loading"
         type="primary"
         class="login-btn"
+        icon="el-icon-s-promotion"
         @click.native.prevent="handleLogin"
       >
-        登录
+        Come back
       </el-button>
     </el-form>
   </div>
@@ -198,11 +199,14 @@ $font-color: #333;
 
   .login-form {
     position: relative;
-    width: 520px;
+    width: 560px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 30px 40px 10px;
     margin: 0 auto;
     overflow: hidden;
+    margin-top: 10%;
+    background: rgba(255, 235, 59, 0.1);
+    box-shadow: 10px 10px 10px 0px rgba(158, 158, 158, 0.14);
   }
 
   .svg-container {
@@ -245,12 +249,15 @@ $font-color: #333;
 .login-btn {
   width: 100%;
   margin-bottom: 30px;
-  font-size: 15px;
-  letter-spacing: 3px;
-  background: rgba(#66b1ff, 0.2);
-  color: #409eff;
+  font-size: 16px;
+  letter-spacing: 0px;
+  background: #E91E63;
+  color: #fff;
+  border: 1px solid #F8BBD0;
+  border-radius: 42px;
+  margin-top: 16px;
   &:hover {
-    background: rgba(#66b1ff, 0.3);
+    background: rgba(#E91E63, 0.3);
   }
 }
 </style>
