@@ -13,7 +13,7 @@
         <el-col :span="12">
           <le-panel header="简单用法">
             <!-- 示例 -->
-            <le-table :columns="columns1"></le-table>
+            <le-table :columns="columns1" :data="dataItems1"></le-table>
             <!-- /示例 -->
           </le-panel>
         </el-col>
@@ -24,20 +24,31 @@
 
 <script>
 import { columns1 } from './columns'
-import { getAllRuleType } from '@/api/demo'
+import { getList } from '../service'
 
 export default {
   data() {
     return {
-      columns1,
+      columns1: columns1(this),
+      dataItems1: {
+        pageNum: 1,
+        pageSize: 10,
+        total: 100,
+        totalPages: 10,
+        list: []
+      }
     }
   },
-  methods: {
-  },
-  mounted () {
-    getAllRuleType({ ruleType: 'plugins' }).then(resp => {
+  mounted() {
+    getList({ pageNum: 1, pageSize: 10 }).then(resp => {
+      this.dataItems1.list = resp.data.list
     })
   },
+  methods: {
+    onView() {
+      alert('hi~')
+    }
+  }
 }
 </script>
 

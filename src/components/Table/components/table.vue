@@ -1,18 +1,31 @@
 <template>
-  <el-table class="le-table" v-bind="$attrs">
-    <el-table-column v-for="(item, index) in tcolumns" :key="index" v-bind="item"></el-table-column>
+  <el-table class="le-table" :data="tableData" v-bind="$attrs">
+    <template v-for="(item, index) in tcolumns">
+      <el-table-column :key="index" v-bind="item" v-if="!item.render"></el-table-column>
+      <el-table-column :key="index" v-bind="item" v-else>
+        <template slot-scope="scope">
+          <render :render="isFunction(item.render) ? item.render(scope) : item.render"></render>
+        </template>
+      </el-table-column>
+    </template>
   </el-table>
 </template>
 
 <script>
+import { isObject, isArray, isFunction } from '@/utils'
+import render from '../../BaseComponent/render'
+
 export default {
   name: 'LeTable',
+  components: {
+    render
+  },
   props: {
     columns: {
       type: Array,
       required: true
     },
-    dataItems: Object,
+    data: [Object, Array],
     selectType: String,
     onSelect: Function
   },
@@ -44,7 +57,18 @@ export default {
           }
         })
       return cols
+    },
+    tableData() {
+      if (isArray(this.data)) {
+        return this.data
+      } else if (isObject(this.data)) {
+        return this.data.list
+      }
+      return []
     }
+  },
+  methods: {
+    isFunction
   }
 }
 </script>

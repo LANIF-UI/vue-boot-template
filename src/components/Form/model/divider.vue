@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import render from './render'
+import render from '@/components/BaseComponent/render'
 export default {
   name: 'LeDivider',
   components: {

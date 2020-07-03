@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import render from './render'
+import render from '@/components/BaseComponent/render'
 import { isArray, isFunction } from '@/utils'
 
 export default {

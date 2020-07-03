@@ -1,4 +1,4 @@
-export const columns1 = [
+export const columns1 = self => [
   {
     title: '名称',
     name: 'name',
@@ -14,20 +14,19 @@ export const columns1 = [
     name: 'address',
     tableItem: {}
   },
-  // {
-  //   title: '操作',
-  //   tableItem: {
-  //     width: 180,
-  //     render: (text, record) => (
-  //       <DataTable.Oper>
-  //         <Button tooltip='修改'>
-  //           <Icon type='edit' />
-  //         </Button>
-  //         <Button tooltip='删除'>
-  //           <Icon type='trash' />
-  //         </Button>
-  //       </DataTable.Oper>
-  //     )
-  //   }
-  // }
+  {
+    title: '操作',
+    tableItem: {
+      width: 180,
+      render: scope => h => {
+        // scope 为单前行
+        return (
+          <div>
+            <el-button onClick={self.onView} type='text' size='small'>查看</el-button>
+            <el-button type='text' size='small'>编辑</el-button>
+          </div>
+        )
+      }
+    }
+  }
 ];
