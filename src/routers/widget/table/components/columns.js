@@ -19,14 +19,45 @@ export const columns1 = self => [
     tableItem: {
       width: 180,
       render: scope => h => {
-        // scope 为单前行
+        // scope 为当前行数据
         return (
-          <div>
-            <el-button onClick={self.onView} type='text' size='small'>查看</el-button>
-            <el-button type='text' size='small'>编辑</el-button>
-          </div>
+          <le-table-oper>
+            <el-button icon='el-icon-edit'></el-button>
+            <el-button icon='el-icon-delete'></el-button>
+          </le-table-oper>
         )
       }
     }
+  }
+];
+
+export const columns2 = [
+  {
+    tableItem: {
+      type: 'selection',
+      width: 50,
+    }
+  },
+  {
+    title: '序号',
+    tableItem: {
+      type: 'index',
+      width: 50,
+    }
+  },
+  {
+    title: '名称',
+    name: 'name',
+    tableItem: {}
+  },
+  {
+    title: '年龄',
+    name: 'age',
+    tableItem: {}
+  },
+  {
+    title: '地址',
+    name: 'address',
+    tableItem: {}
   }
 ];

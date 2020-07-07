@@ -8,6 +8,7 @@ import Panel from './Panel'
 import Card from './Card'
 import Form from './Form'
 import Table from './Table'
+import TableOper from './Table/components/table-oper'
 
 const components = [
   Container,
@@ -19,7 +20,8 @@ const components = [
   Panel,
   Card,
   Form,
-  Table
+  Table,
+  TableOper
 ]
 
 const install = function(Vue, opts = {}) {

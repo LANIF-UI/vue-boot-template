@@ -6,13 +6,20 @@ const Mock = require('mockjs')
 
 const mockDir = path.join(process.cwd(), 'mock')
 
-function responseFake(url, type, respond) {
+function responseFake(url, type, respond, delay) {
   return {
     url: new RegExp(`${process.env.VUE_APP_BASE_API}${url}`),
     type: type || 'get',
     response(req, res) {
       console.log('request invoke:' + req.path)
-      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+
+      if (delay) {
+        setTimeout(function() {
+          res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+        }, delay)
+      } else {
+        res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+      }
     }
   }
 }
@@ -21,7 +28,7 @@ function registerRoutes(app) {
   let mockLastIndex
 
   const mocks = require('./index').default.map(route => {
-    return responseFake(route.url, route.type, route.response)
+    return responseFake(route.url, route.type, route.response, route.delay)
   })
   for (const mock of mocks) {
     app[mock.type](mock.url, bodyParser.json(), bodyParser.urlencoded({

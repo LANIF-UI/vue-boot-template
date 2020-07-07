@@ -29,6 +29,7 @@ export default [
   {
     url: '/vue-admin-template/datatable/list',
     type: 'post',
+    delay: 400,
     response: options => {
       const body = options.body;
       const pageNum = body.pageNum;
@@ -48,7 +49,7 @@ export default [
         data: {
           pageNum: pageNum,
           pageSize: body.pageSize,
-          total: 100,
+          total: 99,
           totalPages: 10,
           [`list|${body.pageSize}`]: [
             {

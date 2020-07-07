@@ -13,7 +13,40 @@
         <el-col :span="12">
           <le-panel header="简单用法">
             <!-- 示例 -->
-            <le-table :columns="columns1" :data="dataItems1"></le-table>
+            <le-table :columns="columns1" :data="dataItems1" v-loading="loading"></le-table>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="12">
+          <le-panel header="data可以为数组类型">
+            <!-- 示例 -->
+            <le-table :columns="columns1" :data="dataItems1.list" v-loading="loading"></le-table>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="12">
+          <le-panel header="内部分页">
+            <!-- 示例 -->
+            <le-table
+              v-loading="loading"
+              :columns="columns1"
+              :data="dataItems1"
+              @change="onChange"
+              pagination
+            ></le-table>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="12">
+          <le-panel header="行号，多选，初始值">
+            <!-- 示例 -->
+            <le-table
+              v-loading="loading"
+              :columns="columns2"
+              :data="dataItems1"
+              :selected-row-keys="[2, 4]"
+              row-key="id"
+            ></le-table>
             <!-- /示例 -->
           </le-panel>
         </el-col>
@@ -23,13 +56,15 @@
 </template>
 
 <script>
-import { columns1 } from './columns'
+import { columns1, columns2 } from './columns'
 import { getList } from '../service'
 
 export default {
   data() {
     return {
+      loading: false,
       columns1: columns1(this),
+      columns2,
       dataItems1: {
         pageNum: 1,
         pageSize: 10,
@@ -40,13 +75,18 @@ export default {
     }
   },
   mounted() {
-    getList({ pageNum: 1, pageSize: 10 }).then(resp => {
-      this.dataItems1.list = resp.data.list
-    })
+    this.getListData({})
   },
   methods: {
-    onView() {
-      alert('hi~')
+    getListData({ pageNum, pageSize }) {
+      this.loading = true
+      getList({ pageNum: pageNum || 1, pageSize: pageSize || 10 }).then(resp => {
+        this.dataItems1 = resp.data
+        this.loading = false
+      })
+    },
+    onChange({ pageNum, pageSize }) {
+      this.getListData({ pageNum, pageSize })
     }
   }
 }
