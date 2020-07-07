@@ -50,7 +50,8 @@ export default {
     selectType: String,
     selectedRowKeys: Array,
     onSelect: Function,
-    pagination: [Boolean, Object]
+    pagination: [Boolean, Object],
+    showNum: Boolean
   },
   data() {
     return {
@@ -86,6 +87,14 @@ export default {
             ...item
           }
         })
+      if (this.showNum) {
+        cols.unshift({
+          type: 'index',
+          label: '序号',
+          index: this.getIndexNum,
+          width: 50
+        })
+      }
       return cols
     },
     tableData() {
@@ -137,6 +146,11 @@ export default {
       }
 
       this.$emit('change', this.paginationObj)
+    },
+    getIndexNum(index) {
+      const { pageNum, pageSize } = this.paginationObj;
+      index = (index + 1) + (pageNum - 1) * pageSize
+      return index
     }
   }
 }

@@ -45,7 +45,10 @@
               :columns="columns2"
               :data="dataItems1"
               :selected-row-keys="[2, 4]"
+              @change="onChange"
               row-key="id"
+              show-num
+              pagination
             ></le-table>
             <!-- /示例 -->
           </le-panel>

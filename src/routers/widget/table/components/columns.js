@@ -39,13 +39,6 @@ export const columns2 = [
     }
   },
   {
-    title: '序号',
-    tableItem: {
-      type: 'index',
-      width: 50,
-    }
-  },
-  {
     title: '名称',
     name: 'name',
     tableItem: {}
