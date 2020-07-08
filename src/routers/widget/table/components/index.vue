@@ -47,6 +47,7 @@
               :selected-row-keys="[2, 4]"
               @change="onChange"
               row-key="id"
+              select-type="checkbox"
               show-num
               pagination
             ></le-table>

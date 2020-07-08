@@ -7,6 +7,7 @@
       v-bind="$attrs"
       :row-key="rowKey"
       ref="leTable"
+      @select="handleSelect"
     >
       <template v-for="(item, index) in tcolumns">
         <el-table-column :key="index" v-bind="item" v-if="!item.render"></el-table-column>
@@ -60,7 +61,9 @@ export default {
         pageSize: 10,
         layout: 'total, sizes, prev, pager, next, jumper',
         ...this.pagination
-      }
+      },
+      tselectedRowKeys: [],
+      tselectedRow: []
     }
   },
   computed: {
@@ -95,15 +98,24 @@ export default {
           width: 50
         })
       }
+      if (this.selectType === 'checkbox') {
+        cols.unshift({
+          type: 'selection',
+          reserveSelection: true,
+          width: 50
+        })
+      }
       return cols
     },
     tableData() {
+      let _data = []
       if (isArray(this.data)) {
-        return this.data
+        _data = this.data
       } else if (isObject(this.data)) {
-        return this.data.list
+        _data = this.data.list
       }
-      return []
+
+      return _data
     },
     tpagination() {
       if (isArray(this.data)) {
@@ -127,10 +139,11 @@ export default {
     selectedRowKeys(newValue, oldValue) {
       if (newValue) {
         const selectRow = this.tableData.filter(item => newValue.indexOf(item[this.rowKey]) !== -1)
-
+        this.tselectRow = selectRow
+        this.tselectedRowKeys = selectRow.map(item => item[this.rowKey])
         this.$nextTick(() => {
           selectRow.forEach(row => {
-            this.$refs.leTable.toggleRowSelection(row)
+            this.$refs.leTable.toggleRowSelection(row, true)
           })
         })
       }
@@ -148,9 +161,13 @@ export default {
       this.$emit('change', this.paginationObj)
     },
     getIndexNum(index) {
-      const { pageNum, pageSize } = this.paginationObj;
-      index = (index + 1) + (pageNum - 1) * pageSize
+      const { pageNum, pageSize } = this.paginationObj
+      index = index + 1 + (pageNum - 1) * pageSize
       return index
+    },
+    handleSelect(val) {
+      this.tselectRow = val
+      this.tselectedRowKeys = val.map(item => item[this.rowKey])
     }
   }
 }

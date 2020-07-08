@@ -33,12 +33,6 @@ export const columns1 = self => [
 
 export const columns2 = [
   {
-    tableItem: {
-      type: 'selection',
-      width: 50,
-    }
-  },
-  {
     title: '名称',
     name: 'name',
     tableItem: {}
