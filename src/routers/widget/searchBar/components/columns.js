@@ -3,9 +3,9 @@ export const columns1 = [
     title: '角色类型',
     name: 'roleType',
     dict: [
-      { code: '1', codeName: '111' },
-      { code: '2', codeName: '222' },
-      { code: '3', codeName: '333' }
+      { code: '1', codeName: '类型一' },
+      { code: '2', codeName: '类型二' },
+      { code: '3', codeName: '类型三' }
     ],
     searchItem: {
       type: 'select'
@@ -37,9 +37,9 @@ export const columns2 = [
     title: '角色类型',
     name: 'roleType',
     dict: [
-      { code: '1', codeName: '111' },
-      { code: '2', codeName: '222' },
-      { code: '3', codeName: '333' }
+      { code: '1', codeName: '类型一' },
+      { code: '2', codeName: '类型二' },
+      { code: '3', codeName: '类型三' }
     ],
     searchItem: {
       type: 'select'

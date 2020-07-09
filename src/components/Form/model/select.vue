@@ -26,7 +26,8 @@ export default {
     type: String,
     record: Object,
     dict: Array,
-    change: Function
+    change: Function,
+    placeholder: String
   },
   computed: {
     _placeholder() {

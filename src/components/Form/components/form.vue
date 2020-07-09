@@ -89,9 +89,9 @@ export default {
     resetBtn: String // 重置按钮文字，如果为slot则可自定义重置按钮区域
   },
   data() {
-    const _formFields = this.columns.filter(col => col.formItem)
+    let _formFields = this.columns.filter(col => col.formItem)
     if (this.group) {
-      return _formFields.filter(col => col.formItem && col.formItem.group === this.group)
+      _formFields = _formFields.filter(col => col.formItem.group === this.group)
     }
 
     const _formData =

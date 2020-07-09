@@ -15,10 +15,17 @@
             )， 扩展自element-ui的Form组件，可以使用它的api。
           </le-panel>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="24">
           <le-panel header="简单用法">
             <!-- 示例 -->
             <le-search-bar :columns="columns1" @submit="onSubmit" @reset="onReset"></le-search-bar>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="24">
+          <le-panel header="no-label">
+            <!-- 示例 -->
+            <le-search-bar :columns="columns1" no-label @submit="onSubmit" @reset="onReset"></le-search-bar>
             <!-- /示例 -->
           </le-panel>
         </el-col>

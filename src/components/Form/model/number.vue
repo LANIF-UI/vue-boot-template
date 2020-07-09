@@ -18,7 +18,8 @@ export default {
     name: String,
     preview: Boolean,
     type: String,
-    record: Object
+    record: Object,
+    placeholder: String
   },
   computed: {
     _rules() {
