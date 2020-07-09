@@ -20,6 +20,7 @@ import Panel from '@/routers/ui/panel'
 import Card from '@/routers/ui/card'
 import Dialog from '@/routers/ui/dialog'
 import Form from '@/routers/widget/form'
+import SearchBar from '@/routers/widget/searchBar'
 import Table from '@/routers/widget/table'
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -82,6 +83,7 @@ export const constantRoutes = [
     meta: { title: '组件', icon: 'table' },
     children: [
       Form,
+      SearchBar,
       Table
     ]
   },

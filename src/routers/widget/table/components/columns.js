@@ -40,7 +40,9 @@ export const columns2 = [
   {
     title: '年龄',
     name: 'age',
-    tableItem: {}
+    tableItem: {
+      sortable: 'custom'
+    }
   },
   {
     title: '地址',

@@ -33,13 +33,13 @@ export default [
     response: options => {
       const body = options.body;
       const pageNum = body.pageNum;
-      const sortMap = body.sortMap;
+      const sorter = body.sorter;
       const idbase = (pageNum - 1) * 10 + 1;
       let sortField = { 'age|1-100': 1 };
-      if (sortMap && sortMap.age) { // 模拟排序
-        let i = 60;
+      if (sorter && sorter.prop === 'age') { // 模拟排序
+        let i = 60 + ~~(Math.random() * 10);
         sortField =
-          sortMap.age === 'asc'
+          sorter.order === 'ascending'
             ? { 'age|+1': new Array(10).fill(0).map(item => i++) }
             : { 'age|+1': new Array(10).fill(0).map(item => i--) };
       }

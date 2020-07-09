@@ -38,14 +38,15 @@
           </le-panel>
         </el-col>
         <el-col :span="12">
-          <le-panel header="行号，多选，初始值">
+          <le-panel header="行号，多选，初始值，排序">
             <!-- 示例 -->
             <le-table
               v-loading="loading"
               :columns="columns2"
               :data="dataItems1"
-              :selected-row-keys="[2, 4]"
+              :selected-row-keys="selectedRowKeys"
               @change="onChange"
+              @select="onSelect"
               row-key="id"
               select-type="checkbox"
               show-num
@@ -69,6 +70,7 @@ export default {
       loading: false,
       columns1: columns1(this),
       columns2,
+      selectedRowKeys: [2, 4],
       dataItems1: {
         pageNum: 1,
         pageSize: 10,
@@ -82,15 +84,18 @@ export default {
     this.getListData({})
   },
   methods: {
-    getListData({ pageNum, pageSize }) {
+    getListData({ pageNum, pageSize, sorter }) {
       this.loading = true
-      getList({ pageNum: pageNum || 1, pageSize: pageSize || 10 }).then(resp => {
+      getList({ pageNum: pageNum || 1, pageSize: pageSize || 10, sorter }).then(resp => {
         this.dataItems1 = resp.data
         this.loading = false
       })
     },
-    onChange({ pageNum, pageSize }) {
-      this.getListData({ pageNum, pageSize })
+    onChange({ pageNum, pageSize, sorter, filter }) {
+      this.getListData({ pageNum, pageSize, sorter })
+    },
+    onSelect(rows, row, keys) {
+      console.log(rows, row, keys)
     }
   }
 }

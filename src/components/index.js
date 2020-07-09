@@ -7,6 +7,7 @@ import SvgIcon from './SvgIcon'
 import Panel from './Panel'
 import Card from './Card'
 import Form from './Form'
+import SearchBar from './SearchBar'
 import Table from './Table'
 import TableOper from './Table/components/table-oper'
 
@@ -20,6 +21,7 @@ const components = [
   Panel,
   Card,
   Form,
+  SearchBar,
   Table,
   TableOper
 ]

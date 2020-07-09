@@ -3,13 +3,19 @@
 ```bash
 
 # 安装依赖
+npm config set sass-binary-site http://npm.taobao.org/mirrors/node-sass
 npm install
 
 # 建议不要直接使用 cnpm 安装以来，会有各种诡异的 bug。可以通过如下操作解决 npm 下载速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
-
 # 启动服务
 npm run dev
+
+# yarn 安装
+yarn config set registry https://registry.npm.taobao.org -g
+yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+
+yarn
 ```
 
 ## 发布

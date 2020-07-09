@@ -4,10 +4,13 @@
       class="le-table"
       :data="tableData"
       :stripe="stripe"
-      v-bind="$attrs"
       :row-key="rowKey"
       ref="leTable"
       @select="handleSelect"
+      @select-all="handleSelect"
+      @filter-change="filter => handleTableChange({ filter })"
+      @sort-change="sorter => handleTableChange({ sorter })"
+      v-bind="$attrs"
     >
       <template v-for="(item, index) in tcolumns">
         <el-table-column :key="index" v-bind="item" v-if="!item.render"></el-table-column>
@@ -31,6 +34,7 @@
 <script>
 import { isObject, isArray, isFunction } from '@/utils'
 import render from '../../BaseComponent/render'
+import _ from 'lodash'
 
 export default {
   name: 'LeTable',
@@ -136,11 +140,26 @@ export default {
     }
   },
   watch: {
+    tableData(newValue, oldValue) {
+      if (newValue && !_.isEqual(newValue, oldValue) && _.isArray(this.selectedRowKeys)) {
+        const selectRow = newValue.filter(
+          item => this.selectedRowKeys.indexOf(item[this.rowKey]) !== -1
+        )
+        this.tselectRow = selectRow
+        this.tselectedRowKeys = this.selectedRowKeys
+        this.$nextTick(() => {
+          selectRow.forEach(row => {
+            this.$refs.leTable.toggleRowSelection(row, true)
+          })
+        })
+      }
+    },
     selectedRowKeys(newValue, oldValue) {
-      if (newValue) {
+      if (newValue && !_.isEqual(newValue, oldValue)) {
+        this.$refs.leTable.clearSelection()
         const selectRow = this.tableData.filter(item => newValue.indexOf(item[this.rowKey]) !== -1)
         this.tselectRow = selectRow
-        this.tselectedRowKeys = selectRow.map(item => item[this.rowKey])
+        this.tselectedRowKeys = newValue
         this.$nextTick(() => {
           selectRow.forEach(row => {
             this.$refs.leTable.toggleRowSelection(row, true)
@@ -151,11 +170,15 @@ export default {
   },
   methods: {
     isFunction,
-    handleTableChange({ pageNum, pageSize }) {
+    handleTableChange({ pageNum, pageSize, sorter, filter }) {
       if (pageNum) {
         this.paginationObj.pageNum = pageNum
       } else if (pageSize) {
         this.paginationObj.pageSize = pageSize
+      } else if (sorter) {
+        this.paginationObj.sorter = sorter
+      } else if (filter) {
+        this.paginationObj.filter = filter
       }
 
       this.$emit('change', this.paginationObj)
@@ -165,9 +188,10 @@ export default {
       index = index + 1 + (pageNum - 1) * pageSize
       return index
     },
-    handleSelect(val) {
-      this.tselectRow = val
-      this.tselectedRowKeys = val.map(item => item[this.rowKey])
+    handleSelect(selection, row) {
+      this.tselectRow = selection
+      this.tselectedRowKeys = selection.map(item => item[this.rowKey])
+      this.$emit('select', selection, row, this.tselectedRowKeys)
     }
   }
 }

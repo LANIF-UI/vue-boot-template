@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -92,6 +93,10 @@ module.exports = {
       .when(process.env.NODE_ENV === 'development',
         config => config.devtool('cheap-source-map')
       )
+
+    if (process.env.NODE_ENV === 'production') {
+      config.plugin('loadshReplace').use(new LodashModuleReplacementPlugin());
+    }
 
     config
       .when(process.env.NODE_ENV !== 'development',

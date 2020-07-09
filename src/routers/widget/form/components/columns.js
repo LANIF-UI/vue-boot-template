@@ -96,6 +96,7 @@ export const columns3 = [
     name: 'avatar',
     formItem: {
       type: 'upload',
+      action: 'https://httpbin.org/post', // 后台接口 例：/uploadFile 会走代理
       listType: 'picture',
       tip: '只能上传jpg/png文件，且不超过500kb',
       initialValue: [{
@@ -118,6 +119,7 @@ export const columns3 = [
     name: 'picture',
     formItem: {
       type: 'upload',
+      action: 'https://httpbin.org/post', // 后台接口 例：/uploadFile 会走代理
       initialValue: [
         {
           uid: '1',
