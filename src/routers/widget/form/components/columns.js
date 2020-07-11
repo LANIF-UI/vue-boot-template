@@ -98,10 +98,10 @@ export const columns3 = [
       type: 'upload',
       action: 'https://httpbin.org/post', // 后台接口 例：/uploadFile 会走代理
       listType: 'picture',
-      tip: '只能上传jpg/png文件，且不超过500kb',
+      tip: '只能上传jpg/png文件，且不超过50kb',
       initialValue: [{
         uid: 1,
-        thumbUrl: 'https://avatars1.githubusercontent.com/u/34116960'
+        url: 'https://avatars1.githubusercontent.com/u/34116960'
       }],
       rules: [
         {
@@ -109,8 +109,8 @@ export const columns3 = [
           message: '请选择用户头像'
         }
       ],
-      maxFileSize: 10, // 最大限制 kb
-      fileTypes: ['.png', '.jpg', '.gif'], // 允许类型
+      maxFileSize: 50, // 最大限制 kb
+      fileTypes: ['.png', '.jpg'], // 允许类型
       max: 2
     }
   },

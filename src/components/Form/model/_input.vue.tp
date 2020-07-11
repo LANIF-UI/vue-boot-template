@@ -1,0 +1,41 @@
+<template>
+  <input :value="value" @input="onChange($event.target.value)" :disabled="isDisabled" />
+</template>
+
+<script>
+// 支持 v-model 自定义表单验证
+// 1、将父组件的value值通过props传递给子组件
+// 2、手动触发父组件的input事件并将值传给父组件
+// 3、监听value值变化并手动触发验证
+import Emitter from 'element-ui/src/mixins/emitter'
+export default {
+  name: 'LeFormUpload',
+  mixins: [Emitter],
+  props: ['value', 'disabled'],
+  inject: {
+    elForm: {
+      default: ''
+    },
+    elFormItem: {
+      default: ''
+    }
+  },
+  computed: {
+    isDisabled() {
+      return this.disabled || (this.elForm || {}).disabled
+    }
+  },
+  watch: {
+    value(value) {
+      this.dispatch('ElFormItem', 'el.form.change', value)
+    }
+  },
+  methods: {
+    onChange(value) {
+      this.$emit('input', value)
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped></style>
