@@ -44,14 +44,20 @@
         ></component>
       </component>
     </component>
-    <el-form-item>
+    <el-form-item class="form-btns">
       <slot name="submitBtn">
-        <el-button type="primary" icon="el-icon-check" @click="submitForm" native-type="submit">
+        <el-button
+          type="primary"
+          icon="el-icon-check"
+          @click="submitForm"
+          native-type="submit"
+          :title="submitBtn"
+        >
           {{ submitBtn || '提交' }}
         </el-button>
       </slot>
       <slot name="resetBtn">
-        <el-button icon="el-icon-refresh-right" @click="resetForm">
+        <el-button icon="el-icon-refresh-right" @click="resetForm" :title="resetBtn">
           {{ resetBtn || '重置' }}
         </el-button>
       </slot>

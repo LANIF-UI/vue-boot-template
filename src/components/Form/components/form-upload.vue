@@ -22,6 +22,7 @@ import { isArray } from '@/utils'
 export default {
   name: 'LeFormUpload',
   mixins: [Emitter],
+  // eslint-disable-next-line
   props: ['value', 'disabled'],
   inject: {
     elForm: {

@@ -23,9 +23,23 @@
           </le-panel>
         </el-col>
         <el-col :span="24">
-          <le-panel header="no-label">
+          <le-panel header="no-label样式">
             <!-- 示例 -->
             <le-search-bar :columns="columns1" no-label @submit="onSubmit" @reset="onReset"></le-search-bar>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="24">
+          <le-panel header="mini样式">
+            <!-- 示例 -->
+            <le-search-bar :columns="columns1" mini @submit="onSubmit" @reset="onReset"></le-search-bar>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="24">
+          <le-panel header="Form样式">
+            <!-- 示例 -->
+            <le-search-bar :columns="columns1" :inline="false" @submit="onSubmit" @reset="onReset"></le-search-bar>
             <!-- /示例 -->
           </le-panel>
         </el-col>
