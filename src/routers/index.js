@@ -22,6 +22,7 @@ import Dialog from '@/routers/ui/dialog'
 import Form from '@/routers/widget/form'
 import SearchBar from '@/routers/widget/searchBar'
 import Table from '@/routers/widget/table'
+import Charts from '@/routers/widget/charts'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  *
@@ -56,19 +57,10 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/blank',
-    meta: { title: '示例', icon: 'example' },
-    children: [
-      Blank
-    ]
-  },
-  {
     path: '/ui',
     component: Layout,
     redirect: '/ui/container',
-    meta: { title: 'UI元素', icon: 'table' },
+    meta: { title: 'UI元素', icon: 'ui' },
     children: [
       Container,
       Panel,
@@ -80,11 +72,12 @@ export const constantRoutes = [
     path: '/widget',
     component: Layout,
     redirect: '/widget/form',
-    meta: { title: '组件', icon: 'table' },
+    meta: { title: '组件', icon: 'comp' },
     children: [
       Form,
       SearchBar,
-      Table
+      Table,
+      Charts
     ]
   },
   {
@@ -93,11 +86,20 @@ export const constantRoutes = [
     redirect: '/nested/menu1',
     meta: {
       title: '页面',
-      icon: 'nested'
+      icon: 'page'
     },
     children: [
       Nested,
       Background
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/blank',
+    meta: { title: '示例', icon: 'example' },
+    children: [
+      Blank
     ]
   },
   {
