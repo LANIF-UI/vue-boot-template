@@ -23,6 +23,13 @@
           </le-panel>
         </el-col>
         <el-col :span="24">
+          <le-panel header="初始值">
+            <!-- 示例 -->
+            <le-search-bar :columns="columns1" :record="record1" @submit="onSubmit" @reset="onReset"></le-search-bar>
+            <!-- /示例 -->
+          </le-panel>
+        </el-col>
+        <el-col :span="24">
           <le-panel header="no-label样式">
             <!-- 示例 -->
             <le-search-bar :columns="columns1" no-label @submit="onSubmit" @reset="onReset"></le-search-bar>
@@ -53,7 +60,13 @@ import { columns1 } from './columns'
 export default {
   data() {
     return {
-      columns1
+      columns1,
+      record1: {
+        id: 123,
+        roleType: '2', // 类型不能错，不能是数字的2
+        roleName: '管理员',
+        order: 666
+      }
     }
   },
   methods: {

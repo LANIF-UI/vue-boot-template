@@ -7,9 +7,11 @@
     :submit-btn="submitBtn"
     :inline="inline"
     :label-width="labelWidth"
+    :show-message="false"
     inline-message
     v-bind="$attrs"
     v-on="$listeners"
+    size="small"
   >
     <el-button
       slot="submitBtn"
@@ -115,8 +117,18 @@ export default {
         font-size: 16px;
         margin: 0;
       }
+      .el-button--small {
+        padding: 8px 10px;
+        font-size: 14px;
+        margin: 0;
+      }
       button:not(:last-child) {
         border-radius: 0;
+        margin-right: -1px;
+        &:active {
+          position: relative;
+          z-index: 1;
+        }
       }
       button:last-child {
         border-bottom-left-radius: 0;

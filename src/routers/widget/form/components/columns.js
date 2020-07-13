@@ -111,7 +111,10 @@ export const columns3 = [
       ],
       maxFileSize: 50, // 最大限制 kb
       fileTypes: ['.png', '.jpg'], // 允许类型
-      max: 2
+      limit: 2,
+      onExceed(files, fileList) {
+        this.$message.warning('只能选择2个文件');
+      },
     }
   },
   {

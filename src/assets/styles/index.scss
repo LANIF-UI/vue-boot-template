@@ -3,8 +3,7 @@
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
-@import "~element-ui/packages/theme-chalk/src/index";
-
+@import '~element-ui/packages/theme-chalk/src/index';
 
 html {
   height: 100%;
@@ -19,6 +18,18 @@ body {
   text-rendering: optimizeLegibility;
   font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   font-size: $fontSizeBase;
+  color: $colorTextPrimary;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: $colorTextBase;
 }
 
 label {
@@ -57,7 +68,7 @@ div:focus {
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: " ";
+    content: ' ';
     clear: both;
     height: 0;
   }

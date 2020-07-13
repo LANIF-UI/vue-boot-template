@@ -44,7 +44,7 @@
         ></component>
       </component>
     </component>
-    <el-form-item class="form-btns">
+    <el-form-item class="form-btns" v-if="footer">
       <slot name="submitBtn">
         <el-button
           type="primary"
@@ -69,6 +69,7 @@
 <script>
 import model from '../model'
 import { isFunction, isArray } from '@/utils'
+import _ from 'lodash'
 export default {
   name: 'LeForm',
   components: model,
@@ -91,6 +92,10 @@ export default {
     row: Object, // el-row的配置
     col: Object, // el-col的配置
     submit: Function, // 点击确定按钮事件
+    footer: {
+      type: Boolean,
+      default: true
+    },
     submitBtn: String, // 提交按钮文字，如果为slot则可自定义提交按钮区域
     resetBtn: String // 重置按钮文字，如果为slot则可自定义重置按钮区域
   },
@@ -100,25 +105,40 @@ export default {
       _formFields = _formFields.filter(col => col.formItem.group === this.group)
     }
 
-    const _formData =
-      this.record ||
-      _formFields
-        .map(field => ({
-          [field.name]: this.getValue(field.formItem)
-        }))
-        .reduce((p, n) => Object.assign(p, n), {})
+    const _formData = _formFields
+      .map(field => ({
+        [field.name]: this.getValue(field.formItem, field.name)
+      }))
+      .reduce((p, n) => Object.assign(p, n), this.record || {})
 
     return {
       formFields: _formFields,
-      formData: _formData
+      formData: _.pickBy(_formData, _.identity)
     }
   },
-  created() {},
+  watch: {
+    columns(newValue, oldValue) {
+      let _formFields = newValue.filter(col => col.formItem)
+      if (this.group) {
+        _formFields = _formFields.filter(col => col.formItem.group === this.group)
+      }
+      this.formFields = _formFields
+    },
+    record(newValue, oldValue) {
+      const _formData = this.formFields
+        .map(field => ({
+          [field.name]: this.getValue(field.formItem, field.name)
+        }))
+        .reduce((p, n) => Object.assign(p, n), this.record || {})
+      this.formData = _formData
+    }
+  },
   methods: {
-    submitForm() {
+    submitForm(cb) {
       this.$refs.form.validate((valid, errFields) => {
         if (valid) {
-          this.$emit('submit', this.formData)
+          if (_.isFunction(cb)) cb(this.formData)
+          else this.$emit('submit', this.formData)
         } else {
           console.log('error submit!!', errFields)
           return false
@@ -129,12 +149,12 @@ export default {
       this.$refs.form.resetFields()
       this.$emit('reset', this.formData)
     },
-    getValue(formItem) {
-      if (formItem.initialValue) {
+    getValue(formItem, name) {
+      if (formItem.initialValue || (this.record && this.record[name])) {
         if (isFunction(formItem.normalize)) {
-          return formItem.normalize(this.record[this.name])
+          return formItem.normalize((this.record && this.record[name]) || formItem.initialValue)
         } else {
-          return formItem.initialValue
+          return (this.record && this.record[name]) || formItem.initialValue
         }
       }
     },

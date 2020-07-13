@@ -1,12 +1,7 @@
 <template>
   <el-form-item :label="title" :prop="name" :rules="_rules">
     <le-form-upload class="le-upload" v-bind="$attrs" v-model="record[name]">
-      <render :render="uploadButton" v-if="max ? max > record[name].length : true"></render>
-      <div v-else class="no-allow">
-        <el-button size="small" icon="el-icon-upload2" disabled>
-          点击上传
-        </el-button>
-      </div>
+      <render :render="uploadButton"></render>
       <div v-if="tip" slot="tip" class="el-upload__tip">
         <render :render="tip"></render>
       </div>
@@ -35,7 +30,6 @@ export default {
     tip: [String, Function],
     maxFileSize: Number, // 最大文件大小
     fileTypes: Array, // 允许文件类型
-    max: Number // 最大数量
   },
   inject: {
     elForm: {
