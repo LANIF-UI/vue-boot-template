@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import LEementUI from './components'
 // import 'element-ui/lib/theme-chalk/index.css'
 // import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+import direcives from './directive'
 
 import '@/assets/styles/index.scss' // global css
 
@@ -35,6 +36,8 @@ Vue.use(ElementUI)
 
 // 自定义组件
 Vue.use(LEementUI)
+// 自定指令
+Vue.use(direcives)
 
 Vue.config.productionTip = false
 

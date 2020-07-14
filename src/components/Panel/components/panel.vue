@@ -12,7 +12,7 @@
       </div>
       <slot name="subAppend"></slot>
     </div>
-    <div class="le-panel__body" :style="bodyStyle">
+    <div class="le-panel__body" :style="{ ...bodyStyle, height }">
       <slot></slot>
     </div>
   </div>
@@ -25,7 +25,8 @@ export default {
     full: Boolean,
     header: String,
     bodyStyle: Object,
-    subHeader: String
+    subHeader: String,
+    height: String
   }
 }
 </script>

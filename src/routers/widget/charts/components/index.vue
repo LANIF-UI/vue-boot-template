@@ -22,7 +22,7 @@
       </div>
       <div class="side-list">
         <ul class="charts-type-list">
-          <li v-for="(item, index) in chartTypes" :key="index">
+          <li v-for="(item, index) in chartTypes" :key="index" @click="activeKey = item.key">
             <i :class="item.icon" />
             {{ item.title }}
           </li>
@@ -32,12 +32,13 @@
     <le-main>
       <le-container full>
         <le-main padding>
-          <le-panel>
+          <le-panel height="400px">
             <div slot="header">
               <i :class="current.icon" />
               {{ current.title }}
             </div>
             <!-- 示例 -->
+            <le-charts :options="options"></le-charts>
             <!-- /示例 -->
           </le-panel>
         </le-main>
@@ -47,47 +48,57 @@
 </template>
 
 <script>
+import LeCharts from '@/components/Charts'
+
 export default {
+  components: {
+    LeCharts
+  },
   data() {
     return {
-      activeKey: 'Line',
+      activeKey: 'Bar',
       chartTypes: [
         {
           title: '折线图 / Line',
           icon: 'el-icon-data-line',
           key: 'Line',
-          components: ['./Line']
+          components: './line'
         },
         {
           title: '柱状图 / Bar',
           icon: 'el-icon-s-data',
           key: 'Bar',
-          components: ['./Bar']
+          components: './bar'
         },
         {
           title: '饼图 / Pie',
           icon: 'el-icon-pie-chart',
           key: 'Pie',
-          components: ['./Pie']
+          components: './pie'
         },
         {
           title: '点图 / Scatter',
           icon: 'el-icon-lollipop',
           key: 'Scatter',
-          components: ['./Scatter']
+          components: './scatter'
         },
-        { title: '地图 / Map', icon: 'el-icon-map-location', key: 'Map', components: ['./Map'] },
+        {
+          title: '地图 / Map',
+          icon: 'el-icon-map-location',
+          key: 'Map',
+          components: './Map'
+        },
         {
           title: '雷达图 / Radar',
           icon: 'el-icon-place',
           key: 'Radar',
-          components: ['./Radar']
+          components: './radar'
         },
         {
           title: '仪表盘 / Gauge',
           icon: 'el-icon-odometer',
           key: 'Gauge',
-          components: ['./Gauge']
+          components: './gauge'
         }
       ]
     }
@@ -95,6 +106,9 @@ export default {
   computed: {
     current() {
       return this.chartTypes.filter(item => item.key === this.activeKey)[0]
+    },
+    options() {
+      return require(`${this.current.components}`).default
     }
   },
   methods: {}
@@ -104,7 +118,7 @@ export default {
 <style lang="scss">
 .charts-page {
   &-sider {
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #eee;
     background: #f5f5f5;
     .header {
       padding: 20px 20px 0px;
