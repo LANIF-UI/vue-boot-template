@@ -12,7 +12,6 @@ const users = {
   'admin-token': {
     roles: ['admin'],
     introduction: 'I am a super administrator',
-    avatar: 'https://gitee.com/wiqi/dva-boot-admin/raw/master/src/assets/images/logo.png',
     name: 'Super Admin'
   },
   'editor-token': {

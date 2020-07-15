@@ -66,7 +66,7 @@ export default {
       this.chart = null
     },
     onResize(size) {
-      if (this.autoResize) {
+      if (this.chart && this.autoResize) {
         this.chart.resize()
       }
     }

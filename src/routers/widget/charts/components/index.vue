@@ -22,7 +22,12 @@
       </div>
       <div class="side-list">
         <ul class="charts-type-list">
-          <li v-for="(item, index) in chartTypes" :key="index" @click="activeKey = item.key">
+          <li
+            v-for="(item, index) in chartTypes"
+            :key="index"
+            :class="{ active: activeKey === item.key }"
+            @click="activeKey = item.key"
+          >
             <i :class="item.icon" />
             {{ item.title }}
           </li>
@@ -38,7 +43,7 @@
               {{ current.title }}
             </div>
             <!-- 示例 -->
-            <le-charts :options="options"></le-charts>
+            <component :is="current.components" />
             <!-- /示例 -->
           </le-panel>
         </le-main>
@@ -48,57 +53,58 @@
 </template>
 
 <script>
-import LeCharts from '@/components/Charts'
-
 export default {
-  components: {
-    LeCharts
-  },
   data() {
     return {
-      activeKey: 'Bar',
+      activeKey: 'Line',
       chartTypes: [
         {
           title: '折线图 / Line',
           icon: 'el-icon-data-line',
           key: 'Line',
-          components: './line'
+          components: () => import('./line.vue')
         },
         {
           title: '柱状图 / Bar',
           icon: 'el-icon-s-data',
           key: 'Bar',
-          components: './bar'
+          components: () => import('./bar.vue')
+        },
+        {
+          title: '柱状图 / Keyboard',
+          icon: 'el-icon-s-data',
+          key: 'Keyboard',
+          components: () => import('./keyboard.vue')
         },
         {
           title: '饼图 / Pie',
           icon: 'el-icon-pie-chart',
           key: 'Pie',
-          components: './pie'
+          components: () => import('./pie.vue')
         },
         {
           title: '点图 / Scatter',
           icon: 'el-icon-lollipop',
           key: 'Scatter',
-          components: './scatter'
+          components: () => import('./scatter.vue')
         },
         {
           title: '地图 / Map',
           icon: 'el-icon-map-location',
           key: 'Map',
-          components: './Map'
+          components: () => import('./map.vue')
         },
         {
           title: '雷达图 / Radar',
           icon: 'el-icon-place',
           key: 'Radar',
-          components: './radar'
+          components: () => import('./radar.vue')
         },
         {
           title: '仪表盘 / Gauge',
           icon: 'el-icon-odometer',
           key: 'Gauge',
-          components: './gauge'
+          components: () => import('./gauge.vue')
         }
       ]
     }
@@ -141,15 +147,24 @@ export default {
       padding-left: 0px;
       li {
         padding: 12px 26px;
-        color: #999;
+        color: #666;
         transition: 0.3s;
         border-bottom: 1px solid #f0f0f0;
+        transition: .5s ease-out;
         cursor: pointer;
         &:hover {
           background-color: #eeeeee;
           color: #666;
         }
+        &.active {
+          background: #67c23a;
+          color: #fff;
+          i {
+            font-size: 22px;
+          }
+        }
         > i {
+          font-size: 14px;
           margin-right: 10px;
         }
       }

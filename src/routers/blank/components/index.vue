@@ -1,22 +1,27 @@
 <template>
-  <div>
-    Blank
-    <le-panel>111</le-panel>
-    <le-container direction="horizontal" hh="aaa">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-    </le-container>
-  </div>
+  <le-container class="blank" padding>
+    <le-main>
+      <h1>{{ name }}</h1>
+      <el-button type="primary" @click="setName({ name: 'click vuex!' })">
+        Button
+      </el-button>
+    </le-main>
+  </le-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapActions } = createNamespacedHelpers('blank')
+const { name } = mapState(['name'])
+const { setName } = mapActions(['setName'])
 
 export default {
   name: 'Blank',
   computed: {
-    ...mapGetters(['name'])
+    name
+  },
+  methods: {
+    setName
   }
 }
 </script>

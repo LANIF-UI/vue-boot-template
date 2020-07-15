@@ -74,6 +74,56 @@ div:focus {
   }
 }
 
+.flex {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-auto {
+  flex: auto;
+  position: relative;
+  height: 100%;
+}
+
+.flex-auto-hidden {
+  @extend .flex-auto;
+  overflow: hidden;
+}
+
+.flex-none {
+  flex: none;
+  position: relative;
+}
+
+.abs {
+  position: absolute;
+}
+
+.abs-full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 code {
   padding: 2px 4px;
   font-size: 90%;

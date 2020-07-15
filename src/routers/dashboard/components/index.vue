@@ -1,41 +1,124 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
-    <el-button
-      type="primary"
-      icon="el-icon-search"
-      @click="setName({ name: 'sususu' })"
-    >
-      Button
-    </el-button>
-  </div>
+  <le-container class="dashboard-page" padding>
+    <le-main>
+      <el-row :gutter="20">
+        <el-col :md="6">
+          <le-panel class="qq">
+            <i class="icon el-icon-grape" />
+            <h2>
+              <b>523</b>
+            </h2>
+            <h5 class="text-muted">QQ</h5>
+          </le-panel>
+        </el-col>
+        <el-col :md="6">
+          <le-panel class="wechat">
+            <i class="icon el-icon-watermelon" />
+            <h2>
+              <b>99+</b>
+            </h2>
+            <h5 class="text-muted">微信</h5>
+          </le-panel>
+        </el-col>
+        <el-col :md="6">
+          <le-panel class="skype">
+            <i class="icon el-icon-dessert" />
+            <h2>
+              <b>2</b>
+            </h2>
+            <h5 class="text-muted">skype</h5>
+          </le-panel>
+        </el-col>
+        <el-col :md="6">
+          <le-panel class="github">
+            <i class="icon el-icon-sugar" />
+            <h2>
+              <b>1k+</b>
+            </h2>
+            <h5 class="text-muted">github</h5>
+          </le-panel>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col>
+          <le-panel header="数据面板组件" height="300px">
+            <div class="flex">
+              <div class="flex-auto-hidden flex flex-column">
+                <h4 class="flex-none">销售额分布</h4>
+                <div class="flex-auto-hidden">
+                  <Keyboard />
+                </div>
+              </div>
+              <div class="flex-none sales-order">
+                <h4>门店销售额排名</h4>
+                <ul>
+                  <li v-for="(item, i) in rankingListData" :key="i">
+                    <span>{{ i + 1 }}</span>
+                    <span>{{ item.title }}</span>
+                    <span>{{ item.total }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </le-panel>
+        </el-col>
+      </el-row>
+      <el-row :gutter="24">
+        <el-col :md="8">
+          <le-panel header="地图" height="260px">
+            <Map />
+          </le-panel>
+        </el-col>
+        <el-col :md="8">
+          <le-panel header="饼图" height="260px">
+            <Pie />
+          </le-panel>
+        </el-col>
+        <el-col :md="8">
+          <le-panel header="柱状图" height="260px">
+            <Bar />
+          </le-panel>
+        </el-col>
+      </el-row>
+    </le-main>
+  </le-container>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('dashboard')
-const { name } = mapState(['name'])
-const { setName } = mapActions(['setName'])
+import Bar from '@/routers/widget/charts/components/bar'
+import Keyboard from '@/routers/widget/charts/components/keyboard'
+import Pie from '@/routers/widget/charts/components/pie'
+import Map from '@/routers/widget/charts/components/map'
+
+const rankingListData = []
+for (let i = 0; i < 7; i += 1) {
+  rankingListData.push({
+    title: `工专路 ${i} 号店`,
+    total: 323234
+  })
+}
 
 export default {
   name: 'Dashboard',
-  computed: {
-    name
+  components: {
+    Bar,
+    Keyboard,
+    Pie,
+    Map
   },
-  methods: {
-    setName
+  data() {
+    return {
+      rankingListData
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
+<style lang="scss">
+@import './index.scss';
+
+.el-col {
+  position: relative;
+  margin-bottom: 24px;
 }
 </style>

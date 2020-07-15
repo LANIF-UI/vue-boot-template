@@ -7,3 +7,4 @@ requireAll(req)
 // jpg png 图标
 export { default as logo } from './logo.png';
 export { default as logo1 } from './logo1.png';
+export { default as avatar } from './avatar.jpg';
