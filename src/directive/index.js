@@ -1,7 +1,9 @@
 import resize from './resize'
+import permission from './permission'
 
 const directives = [
-  resize
+  resize,
+  permission
 ]
 
 const install = function(Vue, opts = {}) {

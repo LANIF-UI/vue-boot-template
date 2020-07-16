@@ -23,6 +23,7 @@ import Form from '@/routers/widget/form'
 import SearchBar from '@/routers/widget/searchBar'
 import Table from '@/routers/widget/table'
 import Charts from '@/routers/widget/charts'
+import Permission from '@/routers/permission'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  *
@@ -53,7 +54,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/dashboard',
     children: [
-      Dashboard
+      Dashboard,
     ]
   },
   {
@@ -91,6 +92,14 @@ export const constantRoutes = [
     children: [
       Nested,
       Background
+    ]
+  },
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission',
+    children: [
+      Permission,
     ]
   },
   {
