@@ -11,8 +11,8 @@ import Layout from '@/layout/BasicLayout'
 /* Router */
 import Login from '@/routers/login'
 import Blank from '@/routers/blank'
-import NotFount from '@/routers/pages/notfound'
 import Background from '@/routers/pages/background'
+import ErrorPage from '@/routers/pages/error'
 import Dashboard from '@/routers/dashboard'
 import Nested from '@/routers/nested'
 import Container from '@/routers/ui/container'
@@ -53,63 +53,41 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [
-      Dashboard,
-    ]
+    children: [Dashboard]
   },
   {
     path: '/ui',
     component: Layout,
     redirect: '/ui/container',
-    meta: { title: 'UI元素', icon: 'ui' },
-    children: [
-      Container,
-      Panel,
-      Card,
-      Dialog
-    ]
+    meta: { title: 'UI元素', icon: 'ui', roles: ['admin'] },
+    children: [Container, Panel, Card, Dialog]
   },
   {
     path: '/widget',
     component: Layout,
     redirect: '/widget/form',
-    meta: { title: '组件', icon: 'comp' },
-    children: [
-      Form,
-      SearchBar,
-      Table,
-      Charts
-    ]
+    meta: { title: '组件', icon: 'comp', roles: ['admin'] },
+    children: [Form, SearchBar, Table, Charts]
   },
   {
-    path: '/nested',
+    path: '/page',
     component: Layout,
-    redirect: '/nested/menu1',
-    meta: {
-      title: '页面',
-      icon: 'page'
-    },
-    children: [
-      Nested,
-      Background
-    ]
+    redirect: '/page/menu1',
+    meta: { title: '页面', icon: 'page' },
+    children: [Nested, Background, ErrorPage]
   },
   {
     path: '/permission',
     component: Layout,
     redirect: '/permission',
-    children: [
-      Permission,
-    ]
+    children: [Permission]
   },
   {
     path: '/example',
     component: Layout,
     redirect: '/example/blank',
     meta: { title: '示例', icon: 'example' },
-    children: [
-      Blank
-    ]
+    children: [Blank]
   },
   {
     path: 'external-link',
@@ -122,8 +100,17 @@ export const constantRoutes = [
     ]
   },
 
-  // 404 page must be placed at the end !!!
-  NotFount
+  // error page, 404 page must be placed at the end !!!
+  {
+    path: '/403',
+    component: () => import('@/components/Pages/403'),
+    hidden: true
+  },
+  {
+    path: '*',
+    component: () => import('@/components/Pages/404'),
+    hidden: true
+  }
 ]
 
 const createRouter = () => new Router({

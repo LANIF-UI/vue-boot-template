@@ -1,12 +1,11 @@
 
 import store from '@/store'
+import _ from 'lodash'
+
 const roles = store.getters && store.getters.roles || []
 
 function isUserGranted(value) {
-  const hasPermission = roles.some(role => {
-    return value.includes(role)
-  })
-  return false
+  return _.intersection(roles, value).length
 }
 
 export default {

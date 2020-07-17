@@ -5,6 +5,29 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
+import _ from 'lodash'
+
+function hasPermission(currentRoles, to) {
+  if (to.path === '/403') {
+    return true
+  }
+  if (Array.isArray(to.matched)) {
+    for (let i = to.matched.length - 1; i >= 0; i--) {
+      const roles = to.matched[i].meta.roles;
+      if (Array.isArray(roles)) {
+        const hasRoles = _.intersection(roles, currentRoles)
+        if (hasRoles.length) {
+          return true
+        } else {
+          return false
+        }
+      } else if (!roles) {
+        continue
+      }
+    }
+  }
+  return true
+}
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -26,15 +49,24 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
-        next()
+      const roles = store.getters.roles
+      if (roles && roles.length) {
+        if (hasPermission(roles, to)) {
+          next()
+        } else {
+          next('/403')
+          NProgress.done()
+        }
       } else {
         try {
           // get user info
-          await store.dispatch('user/getInfo')
-
-          next()
+          const { roles } = await store.dispatch('user/getInfo')
+          if (hasPermission(roles, to)) {
+            next()
+          } else {
+            next('/403')
+            NProgress.done()
+          }
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
