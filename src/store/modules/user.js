@@ -68,6 +68,12 @@ const actions = {
     })
   },
 
+  changeRoles({ commit, state }, payload) {
+    const { roles } = payload
+    // 此处应发送请求改变用户角色，省略
+    commit('SET_ROLES', roles)
+  },
+
   // user logout
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {

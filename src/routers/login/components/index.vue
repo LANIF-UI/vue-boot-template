@@ -50,7 +50,6 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
-
       <el-button
         :loading="loading"
         type="primary"
@@ -60,6 +59,7 @@
       >
         Come back
       </el-button>
+      <div class="user-pwd">用户名/密码：admin / 111111 或 editor / 111111</div>
     </el-form>
   </div>
 </template>
@@ -248,16 +248,22 @@ $font-color: #333;
 }
 .login-btn {
   width: 100%;
-  margin-bottom: 30px;
   font-size: 16px;
   letter-spacing: 0px;
-  background: #E91E63;
+  background: #e91e63;
   color: #fff;
-  border: 1px solid #F8BBD0;
+  border: 1px solid #f8bbd0;
   border-radius: 42px;
   margin-top: 16px;
+  margin-bottom: 30px;
   &:hover {
-    background: rgba(#E91E63, 0.3);
+    background: rgba(#e91e63, 0.3);
   }
+}
+.user-pwd {
+  color: #999;
+  font-size: 12px;
+  margin-bottom: 16px;
+  text-align: center;
 }
 </style>

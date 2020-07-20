@@ -1,11 +1,51 @@
 <template>
   <le-container class="permission" padding>
     <le-main>
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="date" label="日期" width="180"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-        <el-table-column prop="address" label="地址"></el-table-column>
-      </el-table>
+      <el-row :gutter="24">
+        <el-col>
+          <el-alert
+            :title="`当前用户角色：[${currentRoles}]`"
+            type="success"
+            effect="dark"
+          ></el-alert>
+        </el-col>
+        <el-col>
+          <le-panel header="权限 Permission">
+            在路由中配置meta属性
+            <code>roles: ['admin']</code>
+            ，实现跳由权限。 其它如按钮等权限可以用指令
+            <code>v-permission="['admin','editor']"</code>
+            实现
+          </le-panel>
+        </el-col>
+        <el-col>
+          <le-panel header="指令权限">
+            <el-checkbox-group v-model="currentRoles" size="small">
+              <el-checkbox-button label="admin">Admin角色</el-checkbox-button>
+              <el-checkbox-button label="editor">Editor角色</el-checkbox-button>
+            </el-checkbox-group>
+
+            <div class="content">
+              <el-tag type="primary" effect="dark" v-permission="['admin']">
+                admin角色能看到
+              </el-tag>
+              <el-tag type="success" effect="dark" v-permission="['editor']">
+                editor角色能看到
+              </el-tag>
+              <el-tag type="danger" effect="dark" v-permission="['admin', 'editor']">
+                admin,editor都能看到
+              </el-tag>
+            </div>
+          </le-panel>
+        </el-col>
+        <el-col>
+          <le-panel header="路由权限">
+            <el-link type="primary">
+              <router-link to="/ui/panel">只有Admin角色才可以访问</router-link>
+            </el-link>
+          </le-panel>
+        </el-col>
+      </el-row>
     </le-main>
   </le-container>
 </template>
@@ -15,31 +55,23 @@ export default {
   name: 'Permission',
   data() {
     return {
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        },
-        {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        },
-        {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
-      ]
+      currentRoles: this.$store.getters.roles
+    }
+  },
+  watch: {
+    currentRoles(newValue, oldValue) {
+      this.$store.dispatch('user/changeRoles', { roles: newValue })
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-col {
+  position: relative;
+  margin-bottom: 24px;
+}
+.content {
+  margin-top: 20px;
+}
+</style>

@@ -22,13 +22,15 @@
 import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
+import _ from 'lodash'
 import variables from '@/assets/styles/variables.scss'
 
 export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'roles'
     ]),
     routes() {
       return this.$router.options.routes
@@ -50,6 +52,18 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened
+    },
+    hasPermission(currentRoles, item) {
+      const roles = item.meta && item.meta.roles
+      if (roles && Array.isArray(roles)) {
+        const hasRoles = _.intersection(roles, currentRoles)
+        if (hasRoles.length) {
+          return true
+        } else {
+          return false
+        }
+      }
+      return true
     }
   }
 }
