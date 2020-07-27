@@ -59,6 +59,20 @@
     "svgo": "1.2.2",
     "vue-template-compiler": "2.6.10"
   },
+  "create-template": {
+    "ignoreScript": [
+      "gh-pages"
+    ],
+    "ignoreDevDependencies": [
+      "gh-pages"
+    ],
+    "ignore": [
+      ".git",
+      ".travis.yml",
+      "LICENSE",
+      "README.*.md"
+    ]
+  },
   "engines": {
     "node": ">=8.9",
     "npm": ">= 3.0.0"
