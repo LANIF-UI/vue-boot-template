@@ -24,6 +24,8 @@ import SearchBar from '@/routers/widget/searchBar'
 import Table from '@/routers/widget/table'
 import Charts from '@/routers/widget/charts'
 import Permission from '@/routers/permission'
+/* <import></import> */
+
 /**
  * Note: sub-menu only appear when route children.length >= 1
  *
@@ -48,6 +50,7 @@ import Permission from '@/routers/permission'
  * all roles can be accessed
  */
 export const constantRoutes = [
+  /* <router></router> */
   Login,
   {
     path: '/',
