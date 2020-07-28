@@ -38,8 +38,8 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/plugin-suspension': {
-        target: 'http://172.17.186.113:18080',
+      '/my-proxy': {
+        target: 'http://192.168.0.25:8080',
         pathRewrite: { '^/api': '' },
         changeOrigin: true
       }

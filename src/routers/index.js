@@ -11,19 +11,6 @@ import Layout from '@/layout/BasicLayout'
 /* Router */
 import Login from '@/routers/login'
 import Blank from '@/routers/blank'
-import Background from '@/routers/pages/background'
-import ErrorPage from '@/routers/pages/error'
-import Dashboard from '@/routers/dashboard'
-import Nested from '@/routers/nested'
-import Container from '@/routers/ui/container'
-import Panel from '@/routers/ui/panel'
-import Card from '@/routers/ui/card'
-import Dialog from '@/routers/ui/dialog'
-import Form from '@/routers/widget/form'
-import SearchBar from '@/routers/widget/searchBar'
-import Table from '@/routers/widget/table'
-import Charts from '@/routers/widget/charts'
-import Permission from '@/routers/permission'
 /* <import></import> */
 
 /**
@@ -55,52 +42,9 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    children: [Dashboard]
-  },
-  {
-    path: '/ui',
-    component: Layout,
-    redirect: '/ui/container',
-    meta: { title: 'UI元素', icon: 'ui', roles: ['admin'] },
-    children: [Container, Panel, Card, Dialog]
-  },
-  {
-    path: '/widget',
-    component: Layout,
-    redirect: '/widget/form',
-    meta: { title: '组件', icon: 'comp', roles: ['admin'] },
-    children: [Form, SearchBar, Table, Charts]
-  },
-  {
-    path: '/page',
-    component: Layout,
-    redirect: '/page/menu1',
     meta: { title: '页面', icon: 'page' },
-    children: [Nested, Background, ErrorPage]
-  },
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission',
-    children: [Permission]
-  },
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/blank',
-    meta: { title: '示例', icon: 'example' },
+    redirect: '/blank',
     children: [Blank]
-  },
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/LANIF-UI/vue-boot-template',
-        meta: { title: '外部链接', icon: 'link' }
-      }
-    ]
   },
 
   // error page, 404 page must be placed at the end !!!
