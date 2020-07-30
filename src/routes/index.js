@@ -9,8 +9,8 @@ import Layout from '@/layout/BasicLayout'
 // import InsetLayout from '@/layout/InsetLayout'
 
 /* Router */
-import Login from '@/routers/login'
-import Blank from '@/routers/blank'
+import Login from '@/routes/login'
+import Blank from '@/routes/blank'
 /* <import></import> */
 
 /**
