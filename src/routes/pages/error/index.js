@@ -1,6 +1,6 @@
-import p403 from './routers/403'
-import p404 from './routers/404'
-import p500 from './routers/500'
+import p403 from './routes/403'
+import p404 from './routes/404'
+import p500 from './routes/500'
 
 export default {
   path: 'error',

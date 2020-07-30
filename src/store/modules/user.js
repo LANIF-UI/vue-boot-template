@@ -79,7 +79,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
         removeToken() // must remove  token  first
-        require('@/routers').resetRouter()
+        require('@/routes').resetRouter()
         commit('RESET_STATE')
         resolve()
       }).catch(error => {

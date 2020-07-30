@@ -12,7 +12,7 @@ import '@/assets/styles/index.scss' // global css
 
 import App from './App'
 import store from './store'
-import router from './routers'
+import router from './routes'
 
 import '@/assets/images' // icon
 import '@/permission' // permission control

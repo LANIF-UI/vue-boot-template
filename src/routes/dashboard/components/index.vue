@@ -85,10 +85,10 @@
 </template>
 
 <script>
-import Bar from '@/routers/widget/charts/components/bar'
-import Keyboard from '@/routers/widget/charts/components/keyboard'
-import Pie from '@/routers/widget/charts/components/pie'
-import Map from '@/routers/widget/charts/components/map'
+import Bar from '@/routes/widget/charts/components/bar'
+import Keyboard from '@/routes/widget/charts/components/keyboard'
+import Pie from '@/routes/widget/charts/components/pie'
+import Map from '@/routes/widget/charts/components/map'
 
 const rankingListData = []
 for (let i = 0; i < 7; i += 1) {

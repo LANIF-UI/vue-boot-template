@@ -1,5 +1,5 @@
 import store from './store'
-import router from './routers'
+import router from './routes'
 import { Message } from 'element-ui'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style

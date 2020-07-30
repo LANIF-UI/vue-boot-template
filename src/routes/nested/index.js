@@ -1,5 +1,5 @@
-import Menu11 from './routers/menu1'
-import Menu12 from './routers/menu2'
+import Menu11 from './routes/menu1'
+import Menu12 from './routes/menu2'
 
 export default {
   path: 'menu1',
