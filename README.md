@@ -15,7 +15,7 @@
 .
 ├── mock                     # 模拟请求数据
 ├── public                   # 不参与编译的资源文件
-├── templates                # 为代码生成所准备的模板文件
+├── templates                # 代码生成器所需的模板文件
 ├── src                      # 主程序目录
 │   ├── main.js              # 程序启动和渲染入口文件
 │   ├── settings.js          # 全局配置
@@ -76,6 +76,11 @@ yarn
 yarn start
 ```
 
+## 例用[代码生成器](https://github.com/weiq/boot-template-cli)创建路由页
+```bash
+create-template
+```
+
 ## 发布
 
 ```bash
@@ -102,4 +107,10 @@ npm run lint
 npm run lint -- --fix
 ```
 
-fork自 https://github.com/PanJiaChen/vue-admin-template
+## 结尾
+
+欢迎大家提问题，感谢大家的PR，如果觉得不错，还请帮忙加个:star:哦
+
+企鹅群 820881369 :penguin:
+
+fork自 [vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
