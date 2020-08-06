@@ -24,6 +24,8 @@ import SearchBar from '@/routes/widget/searchBar'
 import Table from '@/routes/widget/table'
 import Charts from '@/routes/widget/charts'
 import Permission from '@/routes/permission'
+import Crud from '@/routes/crud'
+import Toolbar from '@/routes/ui/toolbar'
 /* <import></import> */
 
 /**
@@ -63,7 +65,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/ui/container',
     meta: { title: 'UI元素', icon: 'ui', roles: ['admin'] },
-    children: [Container, Panel, Card, Dialog]
+    children: [Container, Panel, Card, Dialog, Toolbar]
   },
   {
     path: '/widget',
@@ -90,7 +92,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/blank',
     meta: { title: '示例', icon: 'example' },
-    children: [Blank]
+    children: [Blank, Crud]
   },
   {
     path: 'external-link',

@@ -10,6 +10,7 @@ import Form from './Form'
 import SearchBar from './SearchBar'
 import Table from './Table'
 import TableOper from './Table/components/table-oper'
+import Toolbar from './Toolbar'
 
 const components = [
   Container,
@@ -23,7 +24,8 @@ const components = [
   Form,
   SearchBar,
   Table,
-  TableOper
+  TableOper,
+  Toolbar
 ]
 
 const install = function(Vue, opts = {}) {

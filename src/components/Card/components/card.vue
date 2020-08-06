@@ -24,7 +24,7 @@
 export default {
   name: 'LeCard',
   props: {
-    type: String,
+    type: String, // info | success | warning | danger
     header: String,
     footer: String,
     append: String,
