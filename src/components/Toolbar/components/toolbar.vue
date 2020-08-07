@@ -54,21 +54,21 @@ export default {
 .le-toolbar {
   position: relative;
   overflow: hidden;
-  min-height: $panelHeaderHeight;
+  min-height: $toolbarHeight;
   margin-bottom: 0;
   line-height: 1;
   border-bottom: 1px solid $borderColor;
   .top-panel {
-    height: $panelHeaderHeight;
+    height: $toolbarHeight;
     overflow: hidden;
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    padding: $toolbarPadding;
 
     .right-block {
       position: absolute;
-      top: 7px;
-      right: 20px;
+      top: 8px;
+      right: 10px;
       transition: transform 0.3s ease-out;
       transform: translateX(0);
       &.out {

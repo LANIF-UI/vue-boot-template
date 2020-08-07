@@ -8,12 +8,11 @@
         </el-button-group>
       </le-toolbar>
     </le-header>
-    <le-main>
+    <le-main scroll>
       <le-table
         v-loading="loading"
         :columns="columns"
         :data="dataItems"
-        :selected-row-keys="selectedRowKeys"
         @change="onChange"
         @select="onSelect"
         row-key="id"
@@ -34,7 +33,7 @@ const { mapState, mapActions } = createNamespacedHelpers('crud')
 const { name } = mapState(['name'])
 const { setName } = mapActions(['setName'])
 import { getList } from '../service'
-import columns from './columns'
+import { columns } from './columns'
 
 export default {
   name: 'Crud',
@@ -53,6 +52,9 @@ export default {
   },
   computed: {
     name
+  },
+  mounted() {
+    this.getListData({})
   },
   methods: {
     setName,

@@ -1,4 +1,4 @@
-export default self => [
+export const columns = self => [
   {
     title: '名称',
     name: 'name',
