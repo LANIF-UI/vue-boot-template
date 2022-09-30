@@ -192,6 +192,12 @@ export default {
       this.tselectRow = selection
       this.tselectedRowKeys = selection.map(item => item[this.rowKey])
       this.$emit('select', selection, row, this.tselectedRowKeys)
+    },
+    clearSelection() {
+      this.$refs.leTable.clearSelection()
+    },
+    toggleRowSelection(row, selected) {
+      this.$refs.leTable.toggleRowSelection(row, selected)
     }
   }
 }

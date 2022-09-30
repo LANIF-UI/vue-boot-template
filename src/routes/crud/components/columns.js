@@ -2,17 +2,21 @@ export const columns = self => [
   {
     title: '名称',
     name: 'name',
-    tableItem: {}
+    tableItem: {},
+    formItem: {},
+    searchItem: {}
   },
   {
     title: '年龄',
     name: 'age',
-    tableItem: {}
+    tableItem: {},
+    formItem: {}
   },
   {
     title: '地址',
     name: 'address',
-    tableItem: {}
+    tableItem: {},
+    formItem: {}
   },
   {
     title: '操作',
@@ -22,11 +26,11 @@ export const columns = self => [
         // scope 为当前行数据
         return (
           <le-table-oper>
-            <el-button icon='el-icon-edit'></el-button>
-            <el-button icon='el-icon-delete'></el-button>
+            <el-button icon="el-icon-edit" onClick={e => self.onEdit(scope.row)} />
+            <el-button icon="el-icon-delete" onClick={e => self.onDelete(scope.row)} />
           </le-table-oper>
         )
       }
     }
   }
-];
+]
